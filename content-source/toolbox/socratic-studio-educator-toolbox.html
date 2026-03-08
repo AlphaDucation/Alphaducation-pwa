@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Socratic Toolbox OS | Educator Field Manual</title>
+  <meta name="description" content="Socratic Toolbox OS is a dense 6-page educator field manual with practical tools, protocols, AI integration, and implementation boards.">
+  <style>
+    :root {
+      --bg: #dce8f1;
+      --page: #ffffff;
+      --ink: #0f2434;
+      --muted: #4a6478;
+      --line: #cfdee9;
+      --brand: #0c8b9b;
+      --deep: #104f7a;
+      --accent: #ee7d2b;
+      --lime: #e7f6ec;
+      --ice: #e8f4f8;
+      --sand: #fbf3e7;
+      --violet: #edf0fb;
+      --radius: 14px;
+      --shadow: 0 14px 34px rgba(12, 35, 53, 0.14);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Verdana", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 5% 10%, rgba(12, 139, 155, 0.28), transparent 34%),
+        radial-gradient(circle at 92% 6%, rgba(16, 79, 122, 0.26), transparent 38%),
+        radial-gradient(circle at 50% 92%, rgba(238, 125, 43, 0.18), transparent 34%),
+        linear-gradient(160deg, #d9e7f1 0%, #c9ddeb 42%, #d6e8f3 100%);
+      line-height: 1.34;
+      padding: 14px;
+    }
+
+    .manual {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      gap: 12px;
+    }
+
+    .sheet {
+      min-height: 930px;
+      background: linear-gradient(175deg, #fafdff 0%, #ffffff 46%, #f3f9fd 100%);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 12px;
+      display: grid;
+      gap: 8px;
+      page-break-after: always;
+    }
+
+    .sheet:last-child { page-break-after: auto; }
+
+    .bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid #2f698d;
+      background: linear-gradient(120deg, #103e5f 0%, #0c8b9b 55%, #1f6f95 100%);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.93rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: #f7fcff;
+      text-transform: uppercase;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.22));
+    }
+
+    .page-tag {
+      font-size: 0.74rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #0f4d77;
+      background: linear-gradient(180deg, #ffffff 0%, #dff1fa 100%);
+      border: 1px solid #8cc0da;
+      border-radius: 999px;
+      padding: 6px 11px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
+    }
+
+    h1, h2, h3, h4 { margin: 0; line-height: 1.12; }
+    h1 { font-size: clamp(1.9rem, 4vw, 3rem); }
+    h2 { font-size: 1.2rem; }
+    h3 { font-size: 0.95rem; }
+    h4 { font-size: 0.84rem; color: var(--deep); }
+
+    p { margin: 0; }
+    .lead { color: var(--muted); font-size: 0.9rem; }
+    .tiny { font-size: 0.74rem; color: var(--muted); }
+
+    .r2, .r3, .r4, .r5 {
+      display: grid;
+      gap: 7px;
+    }
+
+    .r2 { grid-template-columns: 1fr 1fr; }
+    .r3 { grid-template-columns: repeat(3, 1fr); }
+    .r4 { grid-template-columns: repeat(4, 1fr); }
+    .r5 { grid-template-columns: repeat(5, 1fr); }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 8px;
+      background: #fff;
+    }
+
+    .card.ice { background: var(--ice); }
+    .card.sand { background: var(--sand); }
+    .card.lime { background: var(--lime); }
+    .card.violet { background: var(--violet); }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 6px;
+    }
+
+    .chip {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--deep);
+      background: #edf6fb;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px 7px;
+    }
+
+    ul {
+      margin: 5px 0 0;
+      padding-left: 15px;
+    }
+
+    li {
+      margin: 0 0 4px;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .metric {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 7px;
+      background: #fff;
+    }
+
+    .metric .v {
+      font-size: 1.04rem;
+      font-weight: 900;
+      color: var(--deep);
+    }
+
+    .metric .l {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .banner {
+      border-left: 4px solid var(--accent);
+      background: #fff3e9;
+      color: #6a4021;
+      border-radius: 9px;
+      padding: 7px;
+      font-size: 0.82rem;
+    }
+
+    .grid-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.76rem;
+      line-height: 1.28;
+    }
+
+    .grid-table th,
+    .grid-table td {
+      border: 1px solid var(--line);
+      padding: 6px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    .grid-table th {
+      background: #edf6fb;
+      color: var(--deep);
+      font-size: 0.72rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .viz {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 4px;
+    }
+
+    .viz svg { width: 100%; height: auto; display: block; }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .step {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 6px;
+      text-align: center;
+      font-size: 0.72rem;
+    }
+
+    .step b {
+      display: block;
+      color: var(--deep);
+      font-size: 0.74rem;
+      margin-bottom: 2px;
+    }
+
+    .prompt {
+      border: 1px solid #b7d4e4;
+      border-radius: 8px;
+      background: #f2f9fd;
+      padding: 7px;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.71rem;
+      color: #224a63;
+      white-space: pre-wrap;
+      line-height: 1.33;
+    }
+
+    .foot {
+      border-top: 1px dashed var(--line);
+      padding-top: 6px;
+      font-size: 0.71rem;
+      color: var(--muted);
+    }
+
+    .refs li { font-size: 0.79rem; }
+
+    a { color: var(--deep); }
+
+    @media (max-width: 980px) {
+      .sheet { min-height: auto; }
+      .r2, .r3, .r4, .r5, .flow { grid-template-columns: 1fr; }
+      .grid-table { font-size: 0.82rem; }
+    }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .manual { max-width: 100%; }
+      .sheet { border: 0; border-radius: 0; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="manual" aria-label="Socratic Toolbox OS">
+
+    <section class="sheet" id="pg1">
+      <div class="bar">
+        <div class="logo"><img src="../../alpha-logo.png" alt="Alphaducation logo">Alphaducation Educator Systems</div>
+        <div class="page-tag">Page 1 - Command Center</div>
+      </div>
+
+      <h1>Socratic Toolbox OS</h1>
+      <h2>Educator Field Manual For High-Impact Inquiry</h2>
+      <p class="lead">This is a practical operating system for Socratic teaching: dense, visual, and built for immediate use in class, coaching, and leadership planning.</p>
+
+      <div class="r3">
+        <article class="card ice">
+          <h3>Tool Families</h3>
+          <ul>
+            <li>Question Design Tools</li>
+            <li>Live Facilitation Tools</li>
+            <li>Assessment Tools</li>
+            <li>AI Classroom Tools</li>
+            <li>Implementation Tools</li>
+          </ul>
+          <div class="chip-row"><span class="chip">Templates</span><span class="chip">Protocols</span><span class="chip">Rubrics</span></div>
+        </article>
+
+        <article class="card sand">
+          <h3>Fast Start (Today)</h3>
+          <ul>
+            <li>Pick one anchor text/problem.</li>
+            <li>Choose 3 question families.</li>
+            <li>Assign 4 student discussion roles.</li>
+            <li>Track one metric: evidence quality.</li>
+          </ul>
+          <div class="chip-row"><span class="chip">35-50 min</span><span class="chip">Any subject</span></div>
+        </article>
+
+        <article class="card lime">
+          <h3>Toolbox Promise</h3>
+          <ul>
+            <li>Less teacher talk, stronger student reasoning.</li>
+            <li>Question quality becomes visible and measurable.</li>
+            <li>AI supports questioning without replacing thinking.</li>
+          </ul>
+          <div class="chip-row"><span class="chip">Practical</span><span class="chip">Scalable</span><span class="chip">Evidence-based</span></div>
+        </article>
+      </div>
+
+      <div class="r4">
+        <div class="metric"><div class="v">18+</div><div class="l">ready-to-use tools</div></div>
+        <div class="metric"><div class="v">6</div><div class="l">question families</div></div>
+        <div class="metric"><div class="v">4</div><div class="l">assessment dimensions</div></div>
+        <div class="metric"><div class="v">2</div><div class="l">AI deployment models</div></div>
+      </div>
+
+      <div class="viz">
+        <svg viewBox="0 0 980 180" role="img" aria-label="toolbox map">
+          <rect x="8" y="16" width="964" height="148" rx="10" fill="#fbfeff" stroke="#cfdee9"/>
+          <rect x="28" y="48" width="168" height="72" rx="8" fill="#d8edf3"/><text x="58" y="88" font-size="14" fill="#29566f">Question</text>
+          <rect x="214" y="48" width="168" height="72" rx="8" fill="#bde1eb"/><text x="248" y="88" font-size="14" fill="#29566f">Facilitation</text>
+          <rect x="400" y="48" width="168" height="72" rx="8" fill="#a1d3e1"/><text x="446" y="88" font-size="14" fill="#29566f">Assessment</text>
+          <rect x="586" y="48" width="168" height="72" rx="8" fill="#83c2d5"/><text x="651" y="88" font-size="14" fill="#29566f">AI</text>
+          <rect x="772" y="48" width="168" height="72" rx="8" fill="#124f7b"/><text x="813" y="88" font-size="14" fill="#ffffff">Scale</text>
+        </svg>
+      </div>
+
+      <p class="foot">Page 1 of 6 | Command center and quick-start map.</p>
+    </section>
+
+    <section class="sheet" id="pg2">
+      <div class="bar">
+        <div class="logo"><img src="../../alpha-logo.png" alt="Alphaducation logo">Socratic Toolbox OS</div>
+        <div class="page-tag">Page 2 - Question Tools</div>
+      </div>
+
+      <h2>Tool Set A: Question Design Kit</h2>
+      <p class="lead">Use this matrix to build high-quality prompts in 3-5 minutes.</p>
+
+      <table class="grid-table">
+        <thead>
+          <tr>
+            <th>Family</th>
+            <th>Purpose</th>
+            <th>Teacher Starter</th>
+            <th>Student Follow-up</th>
+            <th>Common Error</th>
+            <th>Upgrade Move</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Clarification</td><td>Define meaning</td><td>What exactly do we mean?</td><td>Can you restate it?</td><td>Vague terms</td><td>Ask for concrete example</td></tr>
+          <tr><td>Assumption</td><td>Surface premises</td><td>What are we assuming?</td><td>When might that fail?</td><td>Hidden bias</td><td>Test opposite case</td></tr>
+          <tr><td>Evidence</td><td>Strengthen claims</td><td>What supports this?</td><td>Which source is strongest?</td><td>No citation</td><td>Require source and reason</td></tr>
+          <tr><td>Perspective</td><td>Expand viewpoint</td><td>Who sees this differently?</td><td>What changes by context?</td><td>Single lens</td><td>Add stakeholder lens</td></tr>
+          <tr><td>Implication</td><td>Project outcomes</td><td>If true, what follows?</td><td>Who is affected first?</td><td>Shallow effects</td><td>Map short/long term</td></tr>
+          <tr><td>Reflection</td><td>Consolidate learning</td><td>What changed in your thinking?</td><td>What question remains?</td><td>No revision</td><td>Require revised claim</td></tr>
+        </tbody>
+      </table>
+
+      <div class="r3">
+        <article class="card ice"><h3>Tool 1: 3x3 Prompt Builder</h3><ul><li>Pick 3 families.</li><li>Write 1 starter each.</li><li>Add 1 follow-up each.</li></ul></article>
+        <article class="card lime"><h3>Tool 2: Stem Bank Sprint</h3><ul><li>Generate 12 stems in teams.</li><li>Tag each by family.</li><li>Sort by subject fit.</li></ul></article>
+        <article class="card violet"><h3>Tool 3: Prompt Stress Test</h3><ul><li>Can the question be answered with evidence?</li><li>Does it invite revision?</li><li>Does it avoid yes/no closure?</li></ul></article>
+      </div>
+
+      <div class="banner"><b>Dense use tip:</b> build a shared question bank by unit and reuse stems across subjects with only noun changes.</div>
+
+      <p class="foot">Page 2 of 6 | Question design matrix and rapid tools.</p>
+    </section>
+
+    <section class="sheet" id="pg3">
+      <div class="bar">
+        <div class="logo"><img src="../../alpha-logo.png" alt="Alphaducation logo">Socratic Toolbox OS</div>
+        <div class="page-tag">Page 3 - Facilitation Tools</div>
+      </div>
+
+      <h2>Tool Set B: Live Facilitation Toolkit</h2>
+      <p class="lead">Operational routines for classroom dialogue control, equity, and depth.</p>
+
+      <div class="flow">
+        <div class="step"><b>1. Prime</b>Set norm + goal</div>
+        <div class="step"><b>2. Launch</b>Clarify prompt</div>
+        <div class="step"><b>3. Probe</b>Ask evidence</div>
+        <div class="step"><b>4. Pivot</b>Add perspective</div>
+        <div class="step"><b>5. Press</b>Implication push</div>
+        <div class="step"><b>6. Close</b>Reflection rewrite</div>
+      </div>
+
+      <div class="r2">
+        <article class="card">
+          <h3>Tool 4: Discussion Roles</h3>
+          <table class="grid-table">
+            <thead><tr><th>Role</th><th>Move</th><th>Script</th></tr></thead>
+            <tbody>
+              <tr><td>Question Lead</td><td>Sequence prompts</td><td>"Let us clarify this first."</td></tr>
+              <tr><td>Evidence Guard</td><td>Check proof</td><td>"What source supports that?"</td></tr>
+              <tr><td>Counter Voice</td><td>Challenge logic</td><td>"What if the opposite is true?"</td></tr>
+              <tr><td>Synthesizer</td><td>Summarize revision</td><td>"Our claim changed because..."</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="card sand">
+          <h3>Tool 5: Facilitation Troubleshooter</h3>
+          <ul>
+            <li><b>Problem:</b> one student dominates
+              <br><span class="tiny">Fix: timed turns + evidence token system</span></li>
+            <li><b>Problem:</b> no one responds
+              <br><span class="tiny">Fix: pair warm-up then whole group</span></li>
+            <li><b>Problem:</b> opinions with no evidence
+              <br><span class="tiny">Fix: "cite before claim" rule</span></li>
+            <li><b>Problem:</b> shallow agreement
+              <br><span class="tiny">Fix: mandatory counter-perspective round</span></li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="r3">
+        <div class="card ice"><h3>Tool 6: Wait-Time Clock</h3><p class="tiny">Minimum 6 seconds before teacher intervenes.</p></div>
+        <div class="card lime"><h3>Tool 7: Talk-Equity Tracker</h3><p class="tiny">Mark speaking turns by student/group in real time.</p></div>
+        <div class="card violet"><h3>Tool 8: Revoice Ladder</h3><p class="tiny">Clarify -> connect -> challenge -> refine.</p></div>
+      </div>
+
+      <p class="foot">Page 3 of 6 | Live classroom operations and troubleshooting.</p>
+    </section>
+
+    <section class="sheet" id="pg4">
+      <div class="bar">
+        <div class="logo"><img src="../../alpha-logo.png" alt="Alphaducation logo">Socratic Toolbox OS</div>
+        <div class="page-tag">Page 4 - Assessment Tools</div>
+      </div>
+
+      <h2>Tool Set C: Assessment And Feedback Engine</h2>
+      <p class="lead">Short-cycle instruments to capture growth in reasoning quality.</p>
+
+      <div class="r2">
+        <article class="card ice">
+          <h3>Tool 9: 4-Dimension Rubric</h3>
+          <table class="grid-table">
+            <thead><tr><th>Dimension</th><th>1</th><th>2</th><th>3</th><th>4</th></tr></thead>
+            <tbody>
+              <tr><td>Reasoning</td><td>claim only</td><td>weak logic</td><td>mostly coherent</td><td>strong coherent logic</td></tr>
+              <tr><td>Evidence</td><td>none</td><td>unclear</td><td>relevant</td><td>high quality + integrated</td></tr>
+              <tr><td>Dialogue</td><td>isolated talk</td><td>limited response</td><td>responsive</td><td>builds others' ideas</td></tr>
+              <tr><td>Revision</td><td>no change</td><td>minor edit</td><td>meaningful update</td><td>well-justified revision</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="card">
+          <h3>Tool 10: Exit Ticket Canvas</h3>
+          <table class="grid-table">
+            <thead><tr><th>Prompt</th><th>Student Response</th><th>Teacher Note</th></tr></thead>
+            <tbody>
+              <tr><td>My revised claim is...</td><td></td><td></td></tr>
+              <tr><td>Best evidence I used...</td><td></td><td></td></tr>
+              <tr><td>A question I still have...</td><td></td><td></td></tr>
+            </tbody>
+          </table>
+          <div class="banner" style="margin-top:6px;"><b>Tool 11:</b> Use self-score first, then teacher score, then one growth target.</div>
+        </article>
+      </div>
+
+      <div class="r3">
+        <article class="card sand"><h3>Tool 12: Feedback Sentence Bank</h3><ul><li>"Your reasoning is clear; add stronger source quality."</li><li>"Include one counterexample before finalizing."</li><li>"Name what changed after discussion."</li></ul></article>
+        <article class="card lime"><h3>Tool 13: Evidence Quality Check</h3><ul><li>Is the source credible?</li><li>Is it relevant to claim?</li><li>Is it interpreted accurately?</li></ul></article>
+        <article class="card violet"><h3>Tool 14: Bias Alert</h3><ul><li>Check overgeneralization.</li><li>Check authority bias.</li><li>Check missing perspective.</li></ul></article>
+      </div>
+
+      <p class="foot">Page 4 of 6 | Rubrics, templates, and feedback tools.</p>
+    </section>
+
+    <section class="sheet" id="pg5">
+      <div class="bar">
+        <div class="logo"><img src="../../alpha-logo.png" alt="Alphaducation logo">Socratic Toolbox OS</div>
+        <div class="page-tag">Page 5 - AI Tools</div>
+      </div>
+
+      <h2>Tool Set D: AI Socratic Studio</h2>
+      <p class="lead">Practical AI workflows for questioning, reflection, and curriculum-level thinking.</p>
+
+      <div class="r2">
+        <article class="card lime">
+          <h3>Tool 15: AI Dialogue Loop</h3>
+          <div class="flow" style="grid-template-columns: repeat(5, minmax(0, 1fr));">
+            <div class="step"><b>Claim</b>student draft</div>
+            <div class="step"><b>Probe</b>AI question</div>
+            <div class="step"><b>Evidence</b>student cites</div>
+            <div class="step"><b>Counter</b>AI alternate</div>
+            <div class="step"><b>Revise</b>student update</div>
+          </div>
+          <ul>
+            <li>AI asks one question only at a time.</li>
+            <li>No final answers until reflection step.</li>
+            <li>Require at least one citation in revised claim.</li>
+          </ul>
+        </article>
+
+        <article class="card ice">
+          <h3>Tool 16: Prompt Pack (Teacher)</h3>
+          <div class="prompt">Role: Socratic coach for Grade 9-12.
+Rules:
+- Ask exactly one question per turn.
+- Sequence: Clarify -> Assume -> Evidence -> Perspective -> Implication -> Reflect.
+- Do not provide final answers.
+- After each student response, ask for either evidence or revision.
+- End with: "Rewrite your claim in 3 sentences with one source."</div>
+        </article>
+      </div>
+
+      <div class="r3">
+        <article class="card sand"><h3>Tool 17: AI Safety Filter</h3><ul><li>Fact-check external claims.</li><li>No personal student data.</li><li>Flag uncertainty explicitly.</li><li>Teacher validates final output.</li></ul></article>
+        <article class="card violet"><h3>Big Idea: Beyond Classroom</h3><ul><li>Use Socratic protocol in staff PD.</li><li>Audit curriculum with question families.</li><li>Link AI literacy with reasoning literacy.</li></ul></article>
+        <article class="card"><h3>Big Idea: Leadership Lens</h3><ul><li>Track question quality as school metric.</li><li>Use evidence standards across departments.</li><li>Showcase student revision portfolios.</li></ul></article>
+      </div>
+
+      <p class="foot">Page 5 of 6 | AI tools and strategic ideas for scale.</p>
+    </section>
+
+    <section class="sheet" id="pg6">
+      <div class="bar">
+        <div class="logo"><img src="../../alpha-logo.png" alt="Alphaducation logo">Socratic Toolbox OS</div>
+        <div class="page-tag">Page 6 - Rollout + References</div>
+      </div>
+
+      <h2>Tool Set E: Implementation Board And References</h2>
+      <p class="lead">Plan school rollout, track progress, and cite credible foundations.</p>
+
+      <div class="r2">
+        <article class="card">
+          <h3>18-Point Weekly Implementation Board</h3>
+          <table class="grid-table">
+            <thead><tr><th>Week</th><th>Focus</th><th>Required Tool</th><th>Evidence of Success</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Shared language</td><td>Question matrix</td><td>All teachers produce 6-family prompt set</td></tr>
+              <tr><td>2</td><td>Live routine</td><td>Role cards + flow</td><td>Observed class uses 5-phase routine</td></tr>
+              <tr><td>3</td><td>Assessment</td><td>4-dimension rubric</td><td>Students self-score and revise claims</td></tr>
+              <tr><td>4</td><td>AI pilot</td><td>AI dialogue loop</td><td>Citation quality improves in revisions</td></tr>
+              <tr><td>5</td><td>Scale</td><td>Leadership protocol</td><td>Department adopts shared question bank</td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="card sand">
+          <h3>Selected References</h3>
+          <ol class="refs">
+            <li>Paul, R., & Elder, L. (2006). <em>The Thinker's Guide to the Art of Socratic Questioning</em>.</li>
+            <li>Paul, R., & Elder, L. (2019). <em>The Miniature Guide to Critical Thinking Concepts and Tools</em>.</li>
+            <li>Brookfield, S. D., & Preskill, S. (2016). <em>The Discussion Book</em>.</li>
+            <li>Walton, D. (2007). <em>Media Argumentation</em>.</li>
+            <li>UNESCO. (2023). <em>Guidance for Generative AI in Education and Research</em>. <a href="https://www.unesco.org/en/articles/unesco-releases-guidance-generative-ai-education-and-research" target="_blank" rel="noopener">UNESCO</a>.</li>
+            <li>Harvard Project Zero. <em>Thinking Routines Toolbox</em>. <a href="https://pz.harvard.edu/thinking-routines" target="_blank" rel="noopener">Project Zero</a>.</li>
+          </ol>
+          <div class="banner" style="margin-top:6px;"><b>Publisher note:</b> This field manual is licensed for educational use with attribution and local adaptation.</div>
+        </article>
+      </div>
+
+      <div class="r4">
+        <div class="metric"><div class="v">Q1</div><div class="l">Track evidence quality</div></div>
+        <div class="metric"><div class="v">Q2</div><div class="l">Track revision depth</div></div>
+        <div class="metric"><div class="v">Q3</div><div class="l">Track dialogue equity</div></div>
+        <div class="metric"><div class="v">Q4</div><div class="l">Track question sophistication</div></div>
+      </div>
+
+      <p class="foot">Page 6 of 6 | End of Socratic Toolbox OS.</p>
+    </section>
+
+  </main>
+</body>
+</html>
+

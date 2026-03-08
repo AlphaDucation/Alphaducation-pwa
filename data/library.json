@@ -18,6 +18,26 @@
                           "featured":  true,
                           "url":  "assets/resources/newsletter-issue-001-socratic-questioning.html",
                           "uploadedAt":  "2026-03-08"
+                      },
+                      {
+                          "id":  "toolbox-socratic-studio-001",
+                          "title":  "The Socratic Studio: Educator Toolbox",
+                          "type":  "html",
+                          "format":  "HTML",
+                          "category":  "Toolbox",
+                          "cover":  "assets/images/covers/toolbox.svg",
+                          "description":  "A 6-page visual educator toolbox for Socratic questioning with classroom systems, assessment tools, big ideas, and AI integration.",
+                          "tags":  [
+                                       "toolbox",
+                                       "socratic questioning",
+                                       "educators",
+                                       "ai classroom",
+                                       "assessment",
+                                       "facilitation"
+                                   ],
+                          "featured":  true,
+                          "url":  "assets/resources/socratic-studio-educator-toolbox.html",
+                          "uploadedAt":  "2026-03-08"
                       }
                   ]
 }
