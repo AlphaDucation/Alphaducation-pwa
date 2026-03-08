@@ -1,4 +1,4 @@
-const CACHE_NAME = 'alphaducation-library-v10';
+const CACHE_NAME = 'alphaducation-library-v11';
 const OFFLINE_URL = 'offline.html';
 
 const CORE_ASSETS = [
@@ -30,7 +30,8 @@ const CORE_ASSETS = [
   'alpha-logo.png',
   'assets/resources/newsletter-issue-001-socratic-questioning.html',
   'assets/images/covers/newsletter-issue-001.png',
-  'assets/resources/socratic-studio-educator-toolbox.html'
+  'assets/resources/socratic-studio-educator-toolbox.html',
+  'assets/images/covers/toolbox-1.png'
 ];
 
 self.addEventListener('install', (event) => {
@@ -85,6 +86,7 @@ self.addEventListener('fetch', (event) => {
     );
   }
 });
+
 
 
 
