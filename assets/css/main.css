@@ -84,9 +84,10 @@ a {
 }
 
 .brand-logo {
-  width: auto;
+  width: 34px;
   height: 34px;
   object-fit: contain;
+  flex: 0 0 auto;
 }
 .nav-links {
   display: flex;
@@ -336,4 +337,5 @@ main section {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
+
 

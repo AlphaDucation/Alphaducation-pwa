@@ -1,4 +1,4 @@
-const CACHE_NAME = 'alphaducation-library-v1';
+const CACHE_NAME = 'alphaducation-library-v2';
 const OFFLINE_URL = 'offline.html';
 
 const CORE_ASSETS = [
@@ -26,7 +26,8 @@ const CORE_ASSETS = [
   'assets/images/covers/webbook.svg',
   'assets/images/covers/toolbox.svg',
   'assets/images/covers/workshop.svg',
-  'assets/images/covers/download.svg'
+  'assets/images/covers/download.svg',
+  'alpha-logo.png'
 ];
 
 self.addEventListener('install', (event) => {
@@ -81,3 +82,4 @@ self.addEventListener('fetch', (event) => {
     );
   }
 });
+
