@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alphaducation Newsletter | Issue 01 | Socratic Questioning</title>
+  <meta name="description" content="Issue 01 explores Socratic questioning with practical classroom frameworks, visual infographics, and an AI integration guide.">
+  <style>
+    :root {
+      --bg: #eef5fa;
+      --paper: #ffffff;
+      --ink: #11283a;
+      --muted: #4f6e83;
+      --line: #d6e4ee;
+      --brand: #0b899a;
+      --brand-deep: #0c5f8d;
+      --accent: #e7812f;
+      --soft: #e7f3f8;
+      --soft-2: #f7fbfe;
+      --radius: 18px;
+      --shadow: 0 12px 28px rgba(15, 45, 66, 0.1);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", "Calibri", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% -10%, rgba(11, 137, 154, 0.2), transparent 42%),
+        radial-gradient(circle at 90% -15%, rgba(12, 95, 141, 0.18), transparent 44%),
+        var(--bg);
+      line-height: 1.56;
+      padding: 24px;
+    }
+
+    .issue {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: grid;
+      gap: 22px;
+    }
+
+    .page {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      min-height: 1020px;
+      padding: 26px;
+      display: grid;
+      gap: 16px;
+      page-break-after: always;
+    }
+
+    .page:last-child { page-break-after: auto; }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding-bottom: 8px;
+      border-bottom: 1px dashed var(--line);
+    }
+
+    .issue-badge {
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--brand), white 84%);
+      color: var(--brand-deep);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .date-text { color: var(--muted); font-size: 0.88rem; }
+
+    h1, h2, h3 { margin: 0; line-height: 1.2; }
+    h1 { font-size: clamp(2.1rem, 5vw, 3rem); letter-spacing: -0.01em; }
+    h2 { font-size: 1.46rem; }
+    h3 { font-size: 1.04rem; }
+    p { margin: 0; }
+
+    .lead { color: var(--muted); font-size: 1.04rem; }
+
+    .hero-grid,
+    .columns-2,
+    .columns-3 {
+      display: grid;
+      gap: 12px;
+    }
+
+    .hero-grid { grid-template-columns: 1.2fr 0.8fr; }
+    .columns-2 { grid-template-columns: 1fr 1fr; }
+    .columns-3 { grid-template-columns: repeat(3, 1fr); }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+      padding: 14px;
+    }
+
+    .panel.soft { background: var(--soft); }
+    .panel.tinted { background: var(--soft-2); }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #f2f8fc;
+      color: var(--brand-deep);
+      font-size: 0.86rem;
+      padding: 6px 10px;
+      font-weight: 600;
+    }
+
+    .kpi {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .kpi-card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px;
+      background: #fff;
+    }
+
+    .kpi-value {
+      font-size: 1.3rem;
+      color: var(--brand-deep);
+      font-weight: 800;
+    }
+
+    .kpi-label {
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    ul { margin: 8px 0 0; padding-left: 18px; }
+    li { margin: 0 0 7px; color: var(--muted); }
+
+    .callout {
+      border-left: 5px solid var(--accent);
+      background: color-mix(in srgb, var(--accent), white 88%);
+      border-radius: 10px;
+      padding: 12px;
+      color: #5b3d26;
+    }
+
+    .graphic {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+      padding: 8px;
+    }
+
+    .graphic svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .ai-flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .ai-step {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      padding: 10px;
+      text-align: center;
+      font-size: 0.86rem;
+    }
+
+    .ai-step strong { display: block; color: var(--brand-deep); margin-bottom: 4px; }
+
+    .prompt-box {
+      border: 1px solid #b9d7e6;
+      border-radius: 10px;
+      background: #f0f8fc;
+      padding: 12px;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 0.84rem;
+      color: #21465c;
+      overflow-x: auto;
+    }
+
+    .footnote {
+      border-top: 1px dashed var(--line);
+      padding-top: 10px;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    a { color: var(--brand-deep); }
+
+    @media (max-width: 900px) {
+      body { padding: 12px; }
+      .page { min-height: auto; padding: 16px; }
+      .hero-grid,
+      .columns-2,
+      .columns-3,
+      .kpi,
+      .ai-flow { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body { background: #fff; padding: 0; }
+      .issue { max-width: 100%; }
+      .page { border: 0; border-radius: 0; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="issue" aria-label="Alphaducation Newsletter Issue 01">
+
+    <section class="page" id="page-1">
+      <div class="topbar">
+        <span class="issue-badge">Alphaducation Newsletter | Issue 01</span>
+        <span class="date-text">March 2026 | Professional Edition</span>
+      </div>
+
+      <h1>Socratic Questioning For Deeper Learning</h1>
+      <p class="lead">A classroom-ready guide for educators who want stronger reasoning, richer discussion, and better evidence-based thinking across subjects.</p>
+
+      <div class="hero-grid">
+        <article class="panel soft">
+          <h2>Why This Matters</h2>
+          <p>
+            Socratic questioning moves students from memorizing answers to building explanations. Instead of asking "What is correct?"
+            we ask "How do we know this is correct, and under what conditions might it fail?" This method develops logic, evidence awareness,
+            and intellectual flexibility.
+          </p>
+          <p style="margin-top:8px;">
+            The method is most effective when teachers sequence questions: clarify terms, test assumptions, evaluate evidence, compare perspectives,
+            examine implications, and reflect on thinking changes.
+          </p>
+          <div class="chips" style="margin-top:10px;">
+            <span class="chip">Critical Thinking</span>
+            <span class="chip">Reasoning</span>
+            <span class="chip">Dialogue Norms</span>
+            <span class="chip">Evidence Use</span>
+            <span class="chip">Reflection</span>
+          </div>
+        </article>
+
+        <aside class="panel tinted">
+          <h3>Infographic: Discussion Depth</h3>
+          <div class="graphic" aria-label="Depth ladder infographic">
+            <svg viewBox="0 0 420 250" role="img">
+              <defs>
+                <linearGradient id="g1" x1="0" x2="1">
+                  <stop offset="0%" stop-color="#74c1cc"/>
+                  <stop offset="100%" stop-color="#0c5f8d"/>
+                </linearGradient>
+              </defs>
+              <rect x="10" y="20" width="400" height="210" rx="12" fill="#f6fbfe" stroke="#d6e4ee"/>
+              <rect x="40" y="180" width="340" height="28" rx="7" fill="#dceef6"/>
+              <rect x="70" y="145" width="280" height="28" rx="7" fill="#c7e5f0"/>
+              <rect x="100" y="110" width="220" height="28" rx="7" fill="#acd8e8"/>
+              <rect x="130" y="75" width="160" height="28" rx="7" fill="url(#g1)"/>
+              <text x="52" y="198" font-size="12" fill="#335e77">Recall</text>
+              <text x="82" y="163" font-size="12" fill="#335e77">Clarify</text>
+              <text x="112" y="128" font-size="12" fill="#335e77">Analyze</text>
+              <text x="142" y="93" font-size="12" fill="#ffffff">Synthesize</text>
+              <text x="248" y="58" font-size="12" fill="#335e77">Depth increases as questions evolve</text>
+            </svg>
+          </div>
+          <p style="margin-top:8px; color:var(--muted);">Goal: move from quick recall to reasoned synthesis.</p>
+        </aside>
+      </div>
+
+      <div class="kpi">
+        <div class="kpi-card"><div class="kpi-value">6</div><div class="kpi-label">Question categories</div></div>
+        <div class="kpi-card"><div class="kpi-value">15-20m</div><div class="kpi-label">Ideal dialogue round</div></div>
+        <div class="kpi-card"><div class="kpi-value">5</div><div class="kpi-label">Implementation steps</div></div>
+        <div class="kpi-card"><div class="kpi-value">1</div><div class="kpi-label">Shared reasoning rubric</div></div>
+      </div>
+
+      <p class="footnote">Page 1 of 4 | Core article and visual framing.</p>
+    </section>
+
+    <section class="page" id="page-2">
+      <div class="topbar">
+        <span class="issue-badge">Page 2 | Question Categories</span>
+        <span class="date-text">Planning Matrix</span>
+      </div>
+
+      <h2>The 6 Socratic Categories</h2>
+      <p class="lead">Use these categories in sequence to generate deeper and more disciplined thinking.</p>
+
+      <div class="columns-3">
+        <article class="panel"><h3>1) Clarification</h3><ul><li>What does this concept mean?</li><li>Can you restate the claim precisely?</li><li>What detail is unclear?</li></ul></article>
+        <article class="panel"><h3>2) Assumptions</h3><ul><li>What are we taking for granted?</li><li>Is that always valid?</li><li>What hidden premise exists?</li></ul></article>
+        <article class="panel"><h3>3) Evidence</h3><ul><li>Which evidence supports this?</li><li>How trustworthy is the source?</li><li>What counter-evidence exists?</li></ul></article>
+        <article class="panel"><h3>4) Perspectives</h3><ul><li>What alternative view fits?</li><li>Who might disagree and why?</li><li>What context changes meaning?</li></ul></article>
+        <article class="panel"><h3>5) Implications</h3><ul><li>If true, what follows?</li><li>Who benefits or is harmed?</li><li>What long-term effect appears?</li></ul></article>
+        <article class="panel"><h3>6) Reflection</h3><ul><li>What changed in your thinking?</li><li>What remains uncertain?</li><li>What should we ask next?</li></ul></article>
+      </div>
+
+      <div class="columns-2">
+        <article class="panel">
+          <h3>Infographic: Question Cycle</h3>
+          <div class="graphic" aria-label="Circular process infographic">
+            <svg viewBox="0 0 420 260" role="img">
+              <rect x="10" y="10" width="400" height="240" rx="12" fill="#f8fcff" stroke="#d6e4ee"/>
+              <circle cx="210" cy="130" r="78" fill="none" stroke="#0b899a" stroke-width="10"/>
+              <circle cx="210" cy="130" r="52" fill="#ffffff" stroke="#c9dfea"/>
+              <text x="190" y="136" font-size="12" fill="#0c5f8d">Think</text>
+              <g fill="#2f617c" font-size="11">
+                <text x="183" y="40">Clarify</text>
+                <text x="296" y="96">Evidence</text>
+                <text x="272" y="205">Implications</text>
+                <text x="87" y="205">Reflection</text>
+                <text x="64" y="96">Assumptions</text>
+              </g>
+            </svg>
+          </div>
+        </article>
+
+        <article class="panel soft">
+          <h3>Common Facilitation Errors</h3>
+          <ul>
+            <li>Too many closed yes/no questions.</li>
+            <li>Teacher answers too quickly after silence.</li>
+            <li>Evidence not required before claims.</li>
+            <li>Only confident students participate.</li>
+            <li>No reflection at the end of discussion.</li>
+          </ul>
+          <div class="callout"><strong>Fix:</strong> Add wait time, require textual evidence, and rotate student roles (questioner, challenger, summarizer).</div>
+        </article>
+      </div>
+
+      <p class="footnote">Page 2 of 4 | Category framework plus visual process map.</p>
+    </section>
+
+    <section class="page" id="page-3">
+      <div class="topbar">
+        <span class="issue-badge">Page 3 | Implementation</span>
+        <span class="date-text">Classroom Use</span>
+      </div>
+
+      <h2>Implementation And Assessment</h2>
+      <p class="lead">This structure helps teachers run rigorous dialogue while keeping participation inclusive and measurable.</p>
+
+      <div class="columns-2">
+        <article class="panel">
+          <h3>5-Step Lesson Flow</h3>
+          <ul>
+            <li><strong>Anchor:</strong> Short text, data point, or scenario.</li>
+            <li><strong>Launch:</strong> 2 opening questions (clarification + assumption).</li>
+            <li><strong>Probe:</strong> Evidence and perspective questions.</li>
+            <li><strong>Synthesize:</strong> Implication and counterargument round.</li>
+            <li><strong>Reflect:</strong> Revised claim with rationale.</li>
+          </ul>
+          <h3 style="margin-top:10px;">Subject Categories</h3>
+          <div class="chips" style="margin-top:8px;">
+            <span class="chip">Science Inquiry</span>
+            <span class="chip">History Sources</span>
+            <span class="chip">Literary Analysis</span>
+            <span class="chip">Civics Debate</span>
+            <span class="chip">Math Reasoning</span>
+          </div>
+        </article>
+
+        <article class="panel tinted">
+          <h3>Infographic: Assessment Radar</h3>
+          <div class="graphic" aria-label="Radar-style competency infographic">
+            <svg viewBox="0 0 420 260" role="img">
+              <rect x="10" y="10" width="400" height="240" rx="12" fill="#f8fcff" stroke="#d6e4ee"/>
+              <polygon points="210,40 305,95 285,195 135,195 115,95" fill="#d7edf6" stroke="#86bfd4"/>
+              <polygon points="210,65 280,104 265,180 155,180 140,104" fill="#74c1cc" opacity="0.8"/>
+              <text x="195" y="32" font-size="11" fill="#2f617c">Evidence</text>
+              <text x="307" y="98" font-size="11" fill="#2f617c">Logic</text>
+              <text x="278" y="212" font-size="11" fill="#2f617c">Dialogue</text>
+              <text x="120" y="212" font-size="11" fill="#2f617c">Reflection</text>
+              <text x="72" y="98" font-size="11" fill="#2f617c">Questioning</text>
+            </svg>
+          </div>
+          <p style="margin-top:8px; color:var(--muted);">Score each axis from 1-4 to track growth over time.</p>
+        </article>
+      </div>
+
+      <div class="panel soft">
+        <h3>Differentiation Categories</h3>
+        <div class="columns-3">
+          <div><strong>Emerging:</strong><ul><li>Sentence starters</li><li>Short claim frames</li></ul></div>
+          <div><strong>Language Support:</strong><ul><li>Vocabulary cards</li><li>Model responses</li></ul></div>
+          <div><strong>Advanced:</strong><ul><li>Counterargument challenge</li><li>Source reliability audit</li></ul></div>
+        </div>
+      </div>
+
+      <p class="footnote">Page 3 of 4 | Practical routines, categories, and assessment visuals.</p>
+    </section>
+
+    <section class="page" id="page-4">
+      <div class="topbar">
+        <span class="issue-badge">Page 4 | AI + References</span>
+        <span class="date-text">Future-Ready Practice</span>
+      </div>
+
+      <h2>How Socratic Questioning Works With AI</h2>
+      <p class="lead">AI can support Socratic learning when used as a reasoning partner, not an answer machine. The teacher remains the moderator of quality, evidence, and ethics.</p>
+
+      <article class="panel">
+        <h3>AI-Socratic Workflow</h3>
+        <div class="ai-flow" style="margin-top:8px;">
+          <div class="ai-step"><strong>1. Claim</strong>Student writes initial answer.</div>
+          <div class="ai-step"><strong>2. Probe</strong>AI asks clarification and assumption questions.</div>
+          <div class="ai-step"><strong>3. Evidence</strong>Student adds text/data support.</div>
+          <div class="ai-step"><strong>4. Challenge</strong>AI generates counter-perspective.</div>
+          <div class="ai-step"><strong>5. Revise</strong>Student improves claim and reflection.</div>
+        </div>
+      </article>
+
+      <div class="columns-2">
+        <article class="panel soft">
+          <h3>Example Prompt Template</h3>
+          <div class="prompt-box">You are a Socratic tutor for Grade 10.
+Do not give final answers.
+Ask one question at a time in this order:
+1) Clarification
+2) Assumption
+3) Evidence
+4) Perspective
+5) Implication
+After my response, ask the next question.
+End by asking me to revise my claim in 2 sentences.</div>
+        </article>
+
+        <article class="panel">
+          <h3>AI Safety And Quality Rules</h3>
+          <ul>
+            <li>Require evidence citations before accepting claims.</li>
+            <li>Cross-check facts using trusted sources.</li>
+            <li>Treat AI output as draft thinking, not truth.</li>
+            <li>Log prompt-response cycles for teacher review.</li>
+            <li>Use age-appropriate policy and privacy controls.</li>
+          </ul>
+        </article>
+      </div>
+
+      <article class="panel">
+        <h3>Selected References</h3>
+        <ol>
+          <li>Paul, R., & Elder, L. (2006). <em>The Thinker's Guide to the Art of Socratic Questioning</em>. Foundation for Critical Thinking.</li>
+          <li>Brookfield, S. D., & Preskill, S. (2016). <em>The Discussion Book</em>. Jossey-Bass.</li>
+          <li>Walton, D. (2007). <em>Media Argumentation</em>. Cambridge University Press.</li>
+          <li>UNESCO. (2023). <em>Guidance for Generative AI in Education and Research</em>. <a href="https://www.unesco.org/en/articles/unesco-releases-guidance-generative-ai-education-and-research" target="_blank" rel="noopener">UNESCO guidance page</a>.</li>
+          <li>Harvard Project Zero. (n.d.). <em>Thinking Routines Toolbox</em>. <a href="https://pz.harvard.edu/thinking-routines" target="_blank" rel="noopener">Project Zero routines</a>.</li>
+        </ol>
+      </article>
+
+      <p class="footnote">Page 4 of 4 | AI integration and citation list.</p>
+    </section>
+
+  </main>
+</body>
+</html>

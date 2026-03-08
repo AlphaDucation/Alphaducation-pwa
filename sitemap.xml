@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://example.com/index.html</loc></url>
-  <url><loc>https://example.com/newspapers.html</loc></url>
-  <url><loc>https://example.com/webbooks.html</loc></url>
-  <url><loc>https://example.com/toolbox.html</loc></url>
-  <url><loc>https://example.com/workshops.html</loc></url>
-  <url><loc>https://example.com/downloads.html</loc></url>
-  <url><loc>https://example.com/about.html</loc></url>
-  <url><loc>https://example.com/contact.html</loc></url>
+  <url><loc>https://alphaducation.github.io/Alphaducation-pwa/index.html</loc></url>
+  <url><loc>https://alphaducation.github.io/Alphaducation-pwa/newspapers.html</loc></url>
+  <url><loc>https://alphaducation.github.io/Alphaducation-pwa/webbooks.html</loc></url>
+  <url><loc>https://alphaducation.github.io/Alphaducation-pwa/toolbox.html</loc></url>
+  <url><loc>https://alphaducation.github.io/Alphaducation-pwa/workshops.html</loc></url>
+  <url><loc>https://alphaducation.github.io/Alphaducation-pwa/downloads.html</loc></url>
+  <url><loc>https://alphaducation.github.io/Alphaducation-pwa/about.html</loc></url>
+  <url><loc>https://alphaducation.github.io/Alphaducation-pwa/contact.html</loc></url>
+  <url><loc>https://alphaducation.github.io/Alphaducation-pwa/assets/resources/newsletter-issue-001-socratic-questioning.html</loc></url>
 </urlset>
