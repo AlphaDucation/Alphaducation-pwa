@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#005f9f"/>
+      <stop offset="1" stop-color="#008a97"/>
+    </linearGradient>
+  </defs>
+  <rect width="960" height="600" fill="url(#g1)"/>
+  <text x="60" y="130" font-size="48" fill="#ffffff" font-family="Segoe UI">Alphaducation</text>
+  <text x="60" y="210" font-size="64" fill="#ffe5ce" font-family="Segoe UI" font-weight="700">Newspaper</text>
+</svg>

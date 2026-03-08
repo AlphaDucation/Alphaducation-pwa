@@ -1,0 +1,50 @@
+{
+  "name": "Alphaducation Library",
+  "short_name": "Alphaducation",
+  "description": "A premium educational library for newspapers, web-books, workshops, and downloadable resources.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#f4f8fb",
+  "theme_color": "#008a97",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Newspapers",
+      "url": "newspapers.html",
+      "description": "Open educational newspapers"
+    },
+    {
+      "name": "Web-books",
+      "url": "webbooks.html",
+      "description": "Open interactive web-books"
+    },
+    {
+      "name": "Toolbox",
+      "url": "toolbox.html",
+      "description": "Open practical tools and templates"
+    },
+    {
+      "name": "Workshops",
+      "url": "workshops.html",
+      "description": "Open workshop content"
+    }
+  ]
+}

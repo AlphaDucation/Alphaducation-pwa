@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Alphaducation Library | Workshops</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Alphaducation Library: a premium educational collection of newspapers, web-books, toolkits, workshops, and downloads.">
+  <meta property="og:title" content="Alphaducation Library">
+  <meta property="og:description" content="Explore educational resources by Alphaducation.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/social-preview.png">
+  <meta property="og:url" content="https://example.com/">
+  <meta name="theme-color" content="#008a97">
+  <link rel="icon" href="assets/icons/favicon.png" sizes="any">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body data-page="workshops">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Alphaducation Library home">
+        <span class="brand-dot">AL</span>
+        <span>Alphaducation Library</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html" data-nav="index">Home</a>
+        <a href="newspapers.html" data-nav="newspapers">Newspapers</a>
+        <a href="webbooks.html" data-nav="webbooks">Web-books</a>
+        <a href="toolbox.html" data-nav="toolbox">Toolbox</a>
+        <a href="workshops.html" data-nav="workshops">Workshops</a>
+        <a href="downloads.html" data-nav="downloads">Downloads</a>
+        <a href="about.html" data-nav="about">About</a>
+        <a href="contact.html" data-nav="contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="container hero-card">
+        <h1>Workshops</h1>
+        <p>Workshop outlines, activities, and session materials for engaging collaborative learning.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="filters" aria-label="Library filters">
+          <div class="filter-row">
+            <input id="searchInput" type="search" placeholder="Search in Workshops..." aria-label="Search resources">
+            <select id="typeFilter" aria-label="Filter by type">
+              <option value="">All Types</option>
+            </select>
+            <select id="formatFilter" aria-label="Filter by format">
+              <option value="">All Formats</option>
+            </select>
+            <select id="categoryFilter" aria-label="Filter by category">
+              <option value="">All Categories</option>
+            </select>
+          </div>
+          <div class="cta-row">
+            <button id="clearFilters" class="secondary" type="button">Clear Filters</button>
+          </div>
+        </div>
+
+        <div id="libraryGrid" class="card-grid"></div>
+        <div id="libraryEmptyState" class="empty-state" hidden>No results found. Try removing a filter or searching a different keyword.</div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <p>Alphaducation Library - Open learning resources for all students and educators.</p>
+      <p>
+        <a class="utility-link" href="sitemap.xml">Sitemap</a> |
+        <a class="utility-link" href="robots.txt">Robots</a> |
+        <a class="utility-link" href="offline.html">Offline Page</a>
+      </p>
+    </div>
+  </footer>
+  <script type="module" src="assets/js/main.js"></script>
+  <script src="assets/js/pwa.js"></script>
+</body>
+</html>

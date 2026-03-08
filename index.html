@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Alphaducation Library | Home</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Alphaducation Library: a premium educational collection of newspapers, web-books, toolkits, workshops, and downloads.">
+  <meta property="og:title" content="Alphaducation Library">
+  <meta property="og:description" content="Explore educational resources by Alphaducation.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/images/social-preview.png">
+  <meta property="og:url" content="https://example.com/">
+  <meta name="theme-color" content="#008a97">
+  <link rel="icon" href="assets/icons/favicon.png" sizes="any">
+  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body data-page="index">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Alphaducation Library home">
+        <span class="brand-dot">AL</span>
+        <span>Alphaducation Library</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="index.html" data-nav="index">Home</a>
+        <a href="newspapers.html" data-nav="newspapers">Newspapers</a>
+        <a href="webbooks.html" data-nav="webbooks">Web-books</a>
+        <a href="toolbox.html" data-nav="toolbox">Toolbox</a>
+        <a href="workshops.html" data-nav="workshops">Workshops</a>
+        <a href="downloads.html" data-nav="downloads">Downloads</a>
+        <a href="about.html" data-nav="about">About</a>
+        <a href="contact.html" data-nav="contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <article class="hero-card">
+          <h1>Build Knowledge With Curated Educational Resources</h1>
+          <p>Discover newspapers, web-books, practical toolkits, workshop documents, and downloadable materials designed for modern learning environments.</p>
+          <div class="cta-row">
+            <a class="button" href="newspapers.html">Start Exploring</a>
+            <a class="button secondary" href="about.html">Our Mission</a>
+          </div>
+          <div class="pill-list">
+            <span class="pill">Academic Quality</span>
+            <span class="pill">Mobile First</span>
+            <span class="pill">Installable PWA</span>
+          </div>
+        </article>
+        <article class="install-box">
+          <h2>Install App</h2>
+          <p id="installStatus">Install Alphaducation Library on your phone or desktop for a fast, app-like experience.</p>
+          <div class="cta-row">
+            <button id="installButton" hidden>Install Now</button>
+            <a class="button secondary" href="downloads.html">Browse Downloads</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <h2>Category Shortcuts</h2>
+        </div>
+        <div class="pill-list">
+          <a class="pill" href="newspapers.html">Newspapers</a>
+          <a class="pill" href="webbooks.html">Web-books</a>
+          <a class="pill" href="toolbox.html">Toolbox</a>
+          <a class="pill" href="workshops.html">Workshops</a>
+          <a class="pill" href="downloads.html">Downloads</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <h2>Search The Library</h2>
+        </div>
+        <div class="filters">
+          <div class="filter-row">
+            <input id="homeSearchInput" type="search" placeholder="Search by title, tag, type, or category..." aria-label="Search resources">
+          </div>
+        </div>
+        <div id="homeSearchGrid" class="card-grid"></div>
+        <div id="homeSearchEmpty" class="empty-state" hidden>No matching resources found. Try another keyword.</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <h2>Featured Resources</h2>
+        </div>
+        <div id="featuredGrid" class="card-grid"></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <h2>Recent Uploads</h2>
+        </div>
+        <div id="recentGrid" class="card-grid"></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container info-box">
+        <h2>Alphaducation Mission</h2>
+        <p>Alphaducation helps learners and educators access practical, inclusive, and high-impact educational resources that accelerate understanding and inspire action.</p>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="container">
+      <p>Alphaducation Library - Open learning resources for all students and educators.</p>
+      <p>
+        <a class="utility-link" href="sitemap.xml">Sitemap</a> |
+        <a class="utility-link" href="robots.txt">Robots</a> |
+        <a class="utility-link" href="offline.html">Offline Page</a>
+      </p>
+    </div>
+  </footer>
+  <script type="module" src="assets/js/main.js"></script>
+  <script src="assets/js/pwa.js"></script>
+</body>
+</html>

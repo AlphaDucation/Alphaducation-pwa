@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="600" viewBox="0 0 960 600">
+  <rect width="960" height="600" fill="#12345a"/>
+  <rect x="60" y="70" width="840" height="460" fill="#1e4c77" rx="30"/>
+  <text x="100" y="165" font-size="48" fill="#ffe5ce" font-family="Segoe UI">Alphaducation</text>
+  <text x="100" y="255" font-size="64" fill="#ffffff" font-family="Segoe UI" font-weight="700">Workshop</text>
+</svg>
