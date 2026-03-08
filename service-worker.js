@@ -1,4 +1,4 @@
-const CACHE_NAME = 'alphaducation-library-v4';
+const CACHE_NAME = 'alphaducation-library-v6';
 const OFFLINE_URL = 'offline.html';
 
 const CORE_ASSETS = [
@@ -84,6 +84,8 @@ self.addEventListener('fetch', (event) => {
     );
   }
 });
+
+
 
 
 
