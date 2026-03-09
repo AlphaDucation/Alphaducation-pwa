@@ -814,3 +814,89 @@ body[data-page="index"] .filter-row select {
     border-radius: 14px;
   }
 }
+
+/* Hero 3D hard-fallback layer to avoid partial style loads */
+.hero-3d .hero-3d-shell {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-3d .scene {
+  width: min(520px, 92vw);
+  height: min(520px, 72vh);
+  margin: 0 auto;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.hero-3d .ring,
+.hero-3d .core-logo,
+.hero-3d .orbit-card {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  transform-style: preserve-3d;
+}
+
+.hero-3d .core-logo {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.hero-3d .core-logo img {
+  width: 76%;
+  height: 76%;
+  object-fit: contain;
+}
+
+.hero-3d .orbit-card {
+  width: 128px;
+  height: 62px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+}
+
+.hero-3d .card-a { transform: translate3d(180px, -95px, 110px); }
+.hero-3d .card-b { transform: translate3d(-190px, -70px, 80px); }
+.hero-3d .card-c { transform: translate3d(-115px, 160px, 70px); }
+.hero-3d .card-d { transform: translate3d(175px, 142px, 92px); }
+.hero-3d .card-e { transform: translate3d(8px, -195px, 96px); }
+
+@media (max-width: 980px) {
+  .hero-3d .hero-3d-shell {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-3d .scene {
+    width: 100%;
+    height: auto;
+    display: grid;
+    gap: 8px;
+    transform: none !important;
+    perspective: none;
+  }
+
+  .hero-3d .ring,
+  .hero-3d .core-logo,
+  .hero-3d .orbit-card {
+    position: static;
+    margin: 0;
+    transform: none !important;
+    animation: none !important;
+    width: 100%;
+  }
+
+  .hero-3d .core-logo {
+    height: 120px;
+    border-radius: 14px;
+  }
+}
