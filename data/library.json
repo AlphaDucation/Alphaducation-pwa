@@ -38,6 +38,24 @@
                           "featured":  true,
                           "url":  "assets/resources/socratic-studio-educator-toolbox.html",
                           "uploadedAt":  "2026-03-08"
+                      },
+                      {
+                          "id":  "download-image-001",
+                          "title":  "Download Visual 01",
+                          "type":  "external",
+                          "format":  "Image (PNG)",
+                          "category":  "Downloads",
+                          "cover":  "assets/images/download-1.png",
+                          "description":  "Downloadable visual material for quick classroom and presentation use.",
+                          "tags":  [
+                                       "download",
+                                       "visual",
+                                       "png",
+                                       "classroom material"
+                                   ],
+                          "featured":  false,
+                          "url":  "assets/images/download-1.png",
+                          "uploadedAt":  "2026-03-09"
                       }
                   ]
 }
