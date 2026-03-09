@@ -189,8 +189,37 @@ function highlightCurrentNav() {
   });
 }
 
+function setupHeroOrbit() {
+  const wrap = document.getElementById('orbitWrap');
+  const scene = document.getElementById('orbitScene');
+  if (!wrap || !scene) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const setRotation = (clientX, clientY) => {
+    const rect = wrap.getBoundingClientRect();
+    const x = (clientX - rect.left) / rect.width - 0.5;
+    const y = (clientY - rect.top) / rect.height - 0.5;
+    const ry = x * 12;
+    const rx = -y * 10;
+
+    scene.style.setProperty('--rx', `${rx.toFixed(2)}deg`);
+    scene.style.setProperty('--ry', `${ry.toFixed(2)}deg`);
+  };
+
+  wrap.addEventListener('pointermove', (event) => {
+    setRotation(event.clientX, event.clientY);
+  });
+
+  wrap.addEventListener('pointerleave', () => {
+    scene.style.setProperty('--rx', '0deg');
+    scene.style.setProperty('--ry', '0deg');
+  });
+}
+
 async function init() {
   highlightCurrentNav();
+  setupHeroOrbit();
   setInstallButton();
 
   try {
@@ -217,3 +246,7 @@ async function init() {
 }
 
 init();
+
+
+
+

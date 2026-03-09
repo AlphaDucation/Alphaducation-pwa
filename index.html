@@ -36,29 +36,61 @@
     </div>
   </header>
   <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <article class="hero-card">
-          <h1>Build Knowledge With Curated Educational Resources</h1>
-          <p>Discover newspapers, web-books, practical toolkits, workshop documents, and downloadable materials designed for modern learning environments.</p>
-          <div class="cta-row">
-            <a class="button" href="newspapers.html">Start Exploring</a>
-            <a class="button secondary" href="about.html">Our Mission</a>
+    <section class="hero hero-3d">
+      <div class="container">
+        <div class="hero-shell">
+          <article class="hero-intro">
+            <h1>Step Into A 3D Learning Gateway</h1>
+            <p>Explore Alphaducation through an interactive knowledge orbit. Each floating card is a live path to curated resources for educators and learners.</p>
+            <div class="cta-row">
+              <a class="button" href="newspapers.html">Start Exploring</a>
+              <a class="button secondary" href="about.html">Our Mission</a>
+            </div>
+            <div class="pill-list">
+              <span class="pill">Interactive Hero</span>
+              <span class="pill">Mobile Safe</span>
+              <span class="pill">Installable PWA</span>
+            </div>
+          </article>
+
+          <div class="orbit-wrap" id="orbitWrap" aria-label="Interactive category orbit">
+            <div class="orbit-scene" id="orbitScene">
+              <a class="orbit-card orbit-a" href="newspapers.html">
+                <strong>Newspapers</strong>
+                <span>Latest educational insights</span>
+              </a>
+              <a class="orbit-card orbit-b" href="webbooks.html">
+                <strong>Web-books</strong>
+                <span>Interactive reading journeys</span>
+              </a>
+              <a class="orbit-card orbit-c" href="toolbox.html">
+                <strong>Toolbox</strong>
+                <span>Practical teaching kits</span>
+              </a>
+              <a class="orbit-card orbit-d" href="workshops.html">
+                <strong>Workshops</strong>
+                <span>Ready-to-run session packs</span>
+              </a>
+              <a class="orbit-card orbit-e" href="downloads.html">
+                <strong>Downloads</strong>
+                <span>Offline-ready resources</span>
+              </a>
+              <div class="orbit-core">
+                <img src="./alpha-logo.png" alt="Alphaducation logo">
+                <p>Alphaducation<br>Orbit</p>
+              </div>
+            </div>
           </div>
-          <div class="pill-list">
-            <span class="pill">Academic Quality</span>
-            <span class="pill">Mobile First</span>
-            <span class="pill">Installable PWA</span>
-          </div>
-        </article>
-        <article class="install-box">
-          <h2>Install App</h2>
-          <p id="installStatus">Install Alphaducation Library on your phone or desktop for a fast, app-like experience.</p>
-          <div class="cta-row">
-            <button id="installButton" hidden>Install Now</button>
-            <a class="button secondary" href="downloads.html">Browse Downloads</a>
-          </div>
-        </article>
+
+          <article class="install-box hero-install">
+            <h2>Install App</h2>
+            <p id="installStatus">Install Alphaducation Library on your phone or desktop for a fast, app-like experience.</p>
+            <div class="cta-row">
+              <button id="installButton" hidden>Install Now</button>
+              <a class="button secondary" href="downloads.html">Browse Downloads</a>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -116,6 +148,7 @@
   <script src="assets/js/pwa.js"></script>
 </body>
 </html>
+
 
 
 
