@@ -565,3 +565,252 @@ main section {
     border-radius: 16px;
   }
 }
+
+/* Index 3D Landing Style Override (reference-matched) */
+body[data-page="index"] {
+  --landing-primary: #2dd4bf;
+  --landing-secondary: #60a5fa;
+  --landing-accent: #f4c35a;
+  --landing-surface: #0b1020;
+  color: #ecf3ff;
+  background:
+    radial-gradient(1200px 540px at 0% -15%, color-mix(in srgb, var(--landing-primary) 36%, transparent), transparent 58%),
+    radial-gradient(900px 500px at 100% 0%, color-mix(in srgb, var(--landing-secondary) 30%, transparent), transparent 56%),
+    linear-gradient(150deg, #05070d, var(--landing-surface));
+}
+
+body[data-page="index"] .site-header {
+  backdrop-filter: blur(9px);
+  background: rgba(6, 10, 20, 0.7);
+  border-bottom: 1px solid rgba(180, 204, 238, 0.26);
+}
+
+body[data-page="index"] .brand,
+body[data-page="index"] .nav-links a {
+  color: #dbe7ff;
+}
+
+body[data-page="index"] .nav-links a:hover,
+body[data-page="index"] .nav-links a[aria-current="page"] {
+  border: 1px solid rgba(180, 204, 238, 0.26);
+  background: rgba(255, 255, 255, 0.08);
+  color: #ecf3ff;
+}
+
+body[data-page="index"] .hero-3d {
+  min-height: 78vh;
+  padding: 16px 0 12px;
+}
+
+body[data-page="index"] .hero-3d-shell {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 12px;
+}
+
+body[data-page="index"] .hero-copy {
+  border: 1px solid rgba(180, 204, 238, 0.2);
+  border-radius: 18px;
+  padding: 18px;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+}
+
+body[data-page="index"] .kicker {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--landing-accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+body[data-page="index"] .hero-copy h1 {
+  margin: 0.3rem 0 0.6rem;
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: clamp(2rem, 5.2vw, 3.8rem);
+  line-height: 1.05;
+  color: #f3f7ff;
+}
+
+body[data-page="index"] .hero-copy p {
+  color: #b8c6dd;
+}
+
+body[data-page="index"] .hero-copy .button {
+  background: var(--landing-accent);
+  color: #2d2209;
+}
+
+body[data-page="index"] .hero-copy .button.secondary {
+  background: rgba(255, 255, 255, 0.09);
+  color: #ecf3ff;
+  border: 1px solid rgba(180, 204, 238, 0.26);
+}
+
+body[data-page="index"] .hero-install-inline {
+  margin-top: 12px;
+  border: 1px solid rgba(180, 204, 238, 0.2);
+  border-radius: 12px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+body[data-page="index"] .scene-wrap {
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+body[data-page="index"] .scene {
+  width: min(520px, 92vw);
+  height: min(520px, 72vh);
+  margin: 0 auto;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transform: rotateX(18deg) rotateY(-16deg);
+  transition: transform 220ms ease-out;
+}
+
+body[data-page="index"] .ring,
+body[data-page="index"] .core-logo,
+body[data-page="index"] .orbit-card {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  transform-style: preserve-3d;
+}
+
+body[data-page="index"] .ring {
+  border: 2px solid rgba(236, 243, 255, 0.5);
+  border-radius: 50%;
+  box-shadow: 0 0 20px color-mix(in srgb, var(--landing-primary) 40%, transparent);
+}
+
+body[data-page="index"] .ring-1 {
+  width: 220px;
+  height: 220px;
+  transform: rotateX(70deg) rotateY(8deg);
+  animation: spinA 12s linear infinite;
+}
+
+body[data-page="index"] .ring-2 {
+  width: 320px;
+  height: 320px;
+  border-color: color-mix(in srgb, var(--landing-accent) 70%, #fff 30%);
+  animation: spinB 16s linear infinite reverse;
+}
+
+body[data-page="index"] .ring-3 {
+  width: 430px;
+  height: 430px;
+  border-color: color-mix(in srgb, var(--landing-secondary) 65%, #fff 35%);
+  animation: spinC 22s linear infinite;
+}
+
+@keyframes spinA { from { transform: rotateX(70deg) rotateY(0deg);} to { transform: rotateX(70deg) rotateY(360deg);} }
+@keyframes spinB { from { transform: rotateY(0deg) rotateX(25deg);} to { transform: rotateY(360deg) rotateX(25deg);} }
+@keyframes spinC { from { transform: rotateX(35deg) rotateY(12deg);} to { transform: rotateX(35deg) rotateY(372deg);} }
+
+body[data-page="index"] .core-logo {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 30% 30%, #fff, color-mix(in srgb, var(--landing-primary) 74%, #163f4f) 58%, #0a1a25);
+  box-shadow: 0 0 45px color-mix(in srgb, var(--landing-primary) 70%, transparent), 0 0 120px color-mix(in srgb, var(--landing-secondary) 36%, transparent);
+  transform: translateZ(50px);
+  animation: pulse 3.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translateZ(50px) scale(1); }
+  50% { transform: translateZ(50px) scale(1.08); }
+}
+
+body[data-page="index"] .core-logo img {
+  width: 76%;
+  height: 76%;
+  object-fit: contain;
+}
+
+body[data-page="index"] .orbit-card {
+  width: 128px;
+  height: 62px;
+  border-radius: 12px;
+  border: 1px solid rgba(180, 204, 238, 0.3);
+  display: grid;
+  place-items: center;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.08));
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.35);
+}
+
+body[data-page="index"] .card-a { transform: translate3d(180px, -95px, 110px); }
+body[data-page="index"] .card-b { transform: translate3d(-190px, -70px, 80px); }
+body[data-page="index"] .card-c { transform: translate3d(-115px, 160px, 70px); }
+body[data-page="index"] .card-d { transform: translate3d(175px, 142px, 92px); }
+body[data-page="index"] .card-e { transform: translate3d(8px, -195px, 96px); }
+
+body[data-page="index"] .filters,
+body[data-page="index"] .resource-card,
+body[data-page="index"] .empty-state,
+body[data-page="index"] .info-box {
+  border: 1px solid rgba(180, 204, 238, 0.22);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03));
+}
+
+body[data-page="index"] .resource-title,
+body[data-page="index"] .section-head h2,
+body[data-page="index"] .info-box h2 {
+  color: #edf4ff;
+}
+
+body[data-page="index"] .resource-desc,
+body[data-page="index"] .tag,
+body[data-page="index"] .site-footer,
+body[data-page="index"] .filter-row input,
+body[data-page="index"] .filter-row select {
+  color: #b8c6dd;
+}
+
+body[data-page="index"] .filter-row input,
+body[data-page="index"] .filter-row select {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(180, 204, 238, 0.22);
+}
+
+@media (max-width: 980px) {
+  body[data-page="index"] .hero-3d-shell {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  body[data-page="index"] .scene {
+    width: 100%;
+    height: auto;
+    transform: none !important;
+    perspective: none;
+    display: grid;
+    gap: 8px;
+  }
+
+  body[data-page="index"] .ring,
+  body[data-page="index"] .core-logo,
+  body[data-page="index"] .orbit-card {
+    position: static;
+    margin: 0;
+    transform: none !important;
+    animation: none !important;
+    width: 100%;
+  }
+
+  body[data-page="index"] .core-logo {
+    height: 120px;
+    border-radius: 14px;
+  }
+}

@@ -36,60 +36,41 @@
     </div>
   </header>
   <main>
-    <section class="hero hero-3d">
-      <div class="container">
-        <div class="hero-shell">
-          <article class="hero-intro">
-            <h1>Step Into A 3D Learning Gateway</h1>
-            <p>Explore Alphaducation through an interactive knowledge orbit. Each floating card is a live path to curated resources for educators and learners.</p>
-            <div class="cta-row">
-              <a class="button" href="newspapers.html">Start Exploring</a>
-              <a class="button secondary" href="about.html">Our Mission</a>
-            </div>
-            <div class="pill-list">
-              <span class="pill">Interactive Hero</span>
-              <span class="pill">Mobile Safe</span>
-              <span class="pill">Installable PWA</span>
-            </div>
-          </article>
-
-          <div class="orbit-wrap" id="orbitWrap" aria-label="Interactive category orbit">
-            <div class="orbit-scene" id="orbitScene">
-              <a class="orbit-card orbit-a" href="newspapers.html">
-                <strong>Newspapers</strong>
-                <span>Latest educational insights</span>
-              </a>
-              <a class="orbit-card orbit-b" href="webbooks.html">
-                <strong>Web-books</strong>
-                <span>Interactive reading journeys</span>
-              </a>
-              <a class="orbit-card orbit-c" href="toolbox.html">
-                <strong>Toolbox</strong>
-                <span>Practical teaching kits</span>
-              </a>
-              <a class="orbit-card orbit-d" href="workshops.html">
-                <strong>Workshops</strong>
-                <span>Ready-to-run session packs</span>
-              </a>
-              <a class="orbit-card orbit-e" href="downloads.html">
-                <strong>Downloads</strong>
-                <span>Offline-ready resources</span>
-              </a>
-              <div class="orbit-core">
-                <img src="./alpha-logo.png" alt="Alphaducation logo">
-                <p>Alphaducation<br>Orbit</p>
-              </div>
-            </div>
+    <section class="hero hero-3d" id="hero3d">
+      <div class="container hero-3d-shell">
+        <article class="hero-copy">
+          <p class="kicker">Immersive Knowledge</p>
+          <h1>A 3D Gateway To The Alphaducation Library</h1>
+          <p>Explore your collections in a dynamic spatial scene where each category card floats in depth. Move your cursor and the orbit responds in real time.</p>
+          <div class="cta-row">
+            <a class="button" href="newspapers.html">Start Exploring</a>
+            <a class="button secondary" href="about.html">Our Mission</a>
           </div>
-
-          <article class="install-box hero-install">
-            <h2>Install App</h2>
+          <div class="hero-install-inline">
             <p id="installStatus">Install Alphaducation Library on your phone or desktop for a fast, app-like experience.</p>
             <div class="cta-row">
               <button id="installButton" hidden>Install Now</button>
               <a class="button secondary" href="downloads.html">Browse Downloads</a>
             </div>
-          </article>
+          </div>
+        </article>
+
+        <div class="scene-wrap" aria-label="3D category scene">
+          <div class="scene" id="orbitScene">
+            <div class="ring ring-1"></div>
+            <div class="ring ring-2"></div>
+            <div class="ring ring-3"></div>
+
+            <div class="core-logo">
+              <img src="./alpha-logo.png" alt="Alphaducation core logo">
+            </div>
+
+            <a class="orbit-card card-a" href="newspapers.html">Newspapers</a>
+            <a class="orbit-card card-b" href="webbooks.html">Web-books</a>
+            <a class="orbit-card card-c" href="toolbox.html">Toolbox</a>
+            <a class="orbit-card card-d" href="workshops.html">Workshops</a>
+            <a class="orbit-card card-e" href="downloads.html">Downloads</a>
+          </div>
         </div>
       </div>
     </section>
@@ -148,6 +129,7 @@
   <script src="assets/js/pwa.js"></script>
 </body>
 </html>
+
 
 
 

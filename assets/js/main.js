@@ -190,30 +190,25 @@ function highlightCurrentNav() {
 }
 
 function setupHeroOrbit() {
-  const wrap = document.getElementById('orbitWrap');
   const scene = document.getElementById('orbitScene');
-  if (!wrap || !scene) return;
+  const hero = document.getElementById('hero3d');
+  if (!scene || !hero) return;
 
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || window.innerWidth < 981) return;
 
-  const setRotation = (clientX, clientY) => {
-    const rect = wrap.getBoundingClientRect();
-    const x = (clientX - rect.left) / rect.width - 0.5;
-    const y = (clientY - rect.top) / rect.height - 0.5;
-    const ry = x * 12;
-    const rx = -y * 10;
-
-    scene.style.setProperty('--rx', `${rx.toFixed(2)}deg`);
-    scene.style.setProperty('--ry', `${ry.toFixed(2)}deg`);
+  const updateTilt = (clientX, clientY) => {
+    const x = (clientX / window.innerWidth - 0.5) * 2;
+    const y = (clientY / window.innerHeight - 0.5) * 2;
+    scene.style.transform = `rotateX(${18 - y * 10}deg) rotateY(${-16 + x * 14}deg)`;
   };
 
-  wrap.addEventListener('pointermove', (event) => {
-    setRotation(event.clientX, event.clientY);
+  window.addEventListener('pointermove', (event) => {
+    updateTilt(event.clientX, event.clientY);
   });
 
-  wrap.addEventListener('pointerleave', () => {
-    scene.style.setProperty('--rx', '0deg');
-    scene.style.setProperty('--ry', '0deg');
+  window.addEventListener('scroll', () => {
+    const p = Math.min(1, window.scrollY / 500);
+    hero.style.filter = `saturate(${1 + p * 0.25})`;
   });
 }
 
@@ -246,6 +241,7 @@ async function init() {
 }
 
 init();
+
 
 
 
