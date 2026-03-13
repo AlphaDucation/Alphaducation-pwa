@@ -56,6 +56,26 @@
                           "featured":  false,
                           "url":  "assets/images/download-1.png",
                           "uploadedAt":  "2026-03-09"
+                      },
+                      {
+                          "id":  "webbook-duval-prompting-001",
+                          "title":  "Duval et le prompting",
+                          "type":  "html",
+                          "format":  "HTML",
+                          "category":  "Web-books",
+                          "cover":  "Duval et le prompting/assets/tedbook.png",
+                          "description":  "Un livre web sur le prompting comme nouveau registre de representation semiotique en mathematiques, inspire du cadre theorique de Raymond Duval.",
+                          "tags":  [
+                                       "web-book",
+                                       "prompting",
+                                       "mathematiques",
+                                       "didactique",
+                                       "duval",
+                                       "ia"
+                                   ],
+                          "featured":  true,
+                          "url":  "Duval et le prompting/book.html",
+                          "uploadedAt":  "2026-03-13"
                       }
                   ]
 }

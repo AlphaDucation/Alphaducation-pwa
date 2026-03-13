@@ -1,4 +1,4 @@
-const CACHE_NAME = 'alphaducation-library-v17';
+const CACHE_NAME = 'alphaducation-library-v18';
 const OFFLINE_URL = 'offline.html';
 
 const CORE_ASSETS = [
@@ -32,7 +32,17 @@ const CORE_ASSETS = [
   'assets/resources/newsletter-issue-001-socratic-questioning.html',
   'assets/images/covers/newsletter-issue-001.png',
   'assets/resources/socratic-studio-educator-toolbox.html',
-  'assets/images/covers/toolbox-1.png'
+  'assets/images/covers/toolbox-1.png',
+  'Duval et le prompting/assets/img/Untitled design (12).png',
+  'Duval et le prompting/assets/img/Untitled design (11).png',
+  'Duval et le prompting/assets/img/Untitled design (10).png',
+  'Duval et le prompting/assets/background-palette.png',
+  'Duval et le prompting/assets/tedbook.png',
+  'Duval et le prompting/assets/logo.png',
+  'Duval et le prompting/scripts/book.js',
+  'Duval et le prompting/styles/book-full.css',
+  'Duval et le prompting/styles/book.css',
+  'Duval et le prompting/book.html',
 ];
 
 self.addEventListener('install', (event) => {
@@ -87,6 +97,8 @@ self.addEventListener('fetch', (event) => {
     );
   }
 });
+
+
 
 
 
