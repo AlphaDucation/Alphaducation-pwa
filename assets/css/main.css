@@ -900,3 +900,85 @@ body[data-page="index"] .filter-row select {
     border-radius: 14px;
   }
 }
+
+/* Mobile 3D hero fix */
+@keyframes mobileOrbitDrift {
+  0%, 100% { transform: rotateX(18deg) rotateY(-14deg); }
+  50% { transform: rotateX(24deg) rotateY(12deg); }
+}
+
+@media (max-width: 640px) {
+  body[data-page="index"] .scene-wrap,
+  .hero-3d .scene-wrap {
+    padding-top: 4px;
+  }
+
+  body[data-page="index"] .scene,
+  .hero-3d .scene {
+    width: min(340px, 92vw) !important;
+    height: 340px !important;
+    display: block !important;
+    gap: 0 !important;
+    perspective: 900px !important;
+    transform: rotateX(18deg) rotateY(-14deg) !important;
+    animation: mobileOrbitDrift 9s ease-in-out infinite !important;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  body[data-page="index"] .ring,
+  body[data-page="index"] .core-logo,
+  body[data-page="index"] .orbit-card,
+  .hero-3d .ring,
+  .hero-3d .core-logo,
+  .hero-3d .orbit-card {
+    position: absolute !important;
+    inset: 0 !important;
+    margin: auto !important;
+    width: auto !important;
+    animation-play-state: running;
+  }
+
+  body[data-page="index"] .ring-1,
+  .hero-3d .ring-1 {
+    width: 150px !important;
+    height: 150px !important;
+  }
+
+  body[data-page="index"] .ring-2,
+  .hero-3d .ring-2 {
+    width: 220px !important;
+    height: 220px !important;
+  }
+
+  body[data-page="index"] .ring-3,
+  .hero-3d .ring-3 {
+    width: 300px !important;
+    height: 300px !important;
+  }
+
+  body[data-page="index"] .core-logo,
+  .hero-3d .core-logo {
+    width: 94px !important;
+    height: 94px !important;
+    border-radius: 50% !important;
+  }
+
+  body[data-page="index"] .orbit-card,
+  .hero-3d .orbit-card {
+    width: 108px !important;
+    height: 54px !important;
+    font-size: 0.8rem !important;
+  }
+
+  body[data-page="index"] .card-a,
+  .hero-3d .card-a { transform: translate3d(105px, -70px, 88px) !important; }
+  body[data-page="index"] .card-b,
+  .hero-3d .card-b { transform: translate3d(-112px, -52px, 68px) !important; }
+  body[data-page="index"] .card-c,
+  .hero-3d .card-c { transform: translate3d(-72px, 112px, 60px) !important; }
+  body[data-page="index"] .card-d,
+  .hero-3d .card-d { transform: translate3d(102px, 102px, 72px) !important; }
+  body[data-page="index"] .card-e,
+  .hero-3d .card-e { transform: translate3d(0, -132px, 78px) !important; }
+}
