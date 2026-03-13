@@ -1,7 +1,7 @@
-const CACHE_NAME = 'alphaducation-library-v18';
+const CACHE_NAME = 'alphaducation-library-v19';
 const OFFLINE_URL = 'offline.html';
 
-const CORE_ASSETS = [
+const PRECACHE_ASSETS = [
   './',
   'index.html',
   'newspapers.html',
@@ -33,21 +33,21 @@ const CORE_ASSETS = [
   'assets/images/covers/newsletter-issue-001.png',
   'assets/resources/socratic-studio-educator-toolbox.html',
   'assets/images/covers/toolbox-1.png',
-  'Duval et le prompting/assets/img/Untitled design (12).png',
-  'Duval et le prompting/assets/img/Untitled design (11).png',
   'Duval et le prompting/assets/img/Untitled design (10).png',
+  'Duval et le prompting/assets/img/Untitled design (11).png',
+  'Duval et le prompting/assets/img/Untitled design (12).png',
   'Duval et le prompting/assets/background-palette.png',
   'Duval et le prompting/assets/tedbook.png',
   'Duval et le prompting/assets/logo.png',
   'Duval et le prompting/scripts/book.js',
-  'Duval et le prompting/styles/book-full.css',
   'Duval et le prompting/styles/book.css',
-  'Duval et le prompting/book.html',
+  'Duval et le prompting/styles/book-full.css',
+  'Duval et le prompting/book.html'
 ];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(CORE_ASSETS))
+    caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_ASSETS))
   );
   self.skipWaiting();
 });
@@ -61,57 +61,57 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
+
+async function networkFirst(request) {
+  try {
+    const response = await fetch(request);
+    const cache = await caches.open(CACHE_NAME);
+    cache.put(request, response.clone());
+    return response;
+  } catch {
+    const cached = await caches.match(request);
+    if (cached) return cached;
+    if (request.mode === 'navigate') {
+      return caches.match(OFFLINE_URL);
+    }
+    throw new Error('Network and cache both failed.');
+  }
+}
+
+async function cacheFirst(request) {
+  const cached = await caches.match(request);
+  if (cached) return cached;
+
+  const response = await fetch(request);
+  const cache = await caches.open(CACHE_NAME);
+  cache.put(request, response.clone());
+  return response;
+}
+
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
 
   const requestUrl = new URL(event.request.url);
+  if (requestUrl.origin !== self.location.origin) return;
 
-  if (event.request.mode === 'navigate') {
-    event.respondWith(
-      fetch(event.request)
-        .then((response) => {
-          const copy = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
-          return response;
-        })
-        .catch(async () => {
-          const cachedPage = await caches.match(event.request);
-          return cachedPage || caches.match(OFFLINE_URL);
-        })
-    );
+  const pathname = requestUrl.pathname;
+  const isDynamicAppFile =
+    event.request.mode === 'navigate' ||
+    pathname.endsWith('.html') ||
+    pathname.endsWith('.css') ||
+    pathname.endsWith('.js') ||
+    pathname.endsWith('.json') ||
+    pathname.endsWith('.webmanifest');
+
+  if (isDynamicAppFile) {
+    event.respondWith(networkFirst(event.request));
     return;
   }
 
-  if (requestUrl.origin === self.location.origin) {
-    event.respondWith(
-      caches.match(event.request).then((cached) => {
-        return (
-          cached ||
-          fetch(event.request).then((response) => {
-            const copy = response.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));
-            return response;
-          })
-        );
-      })
-    );
-  }
+  event.respondWith(cacheFirst(event.request));
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
