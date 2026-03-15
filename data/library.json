@@ -1,4 +1,4 @@
-﻿{
+{
     "resources":  [
                       {
                           "id":  "newsletter-socratic-issue-001",
@@ -25,7 +25,7 @@
                           "type":  "html",
                           "format":  "HTML",
                           "category":  "Newspapers",
-                          "cover":  "issue-2/assets/assets.png",
+                          "cover":  "issue-2/cover.png",
                           "description":  "Issue 02 of The Weekly Proof explores number sense with research highlights, field notes, glossary support, and an interactive concept web.",
                           "tags":  [
                                        "newsletter",
@@ -98,3 +98,4 @@
                       }
                   ]
 }
+

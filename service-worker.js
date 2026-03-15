@@ -1,4 +1,4 @@
-const CACHE_NAME = 'alphaducation-library-v22';
+const CACHE_NAME = 'alphaducation-library-v23';
 const OFFLINE_URL = 'offline.html';
 
 const PRECACHE_ASSETS = [
@@ -33,6 +33,7 @@ const PRECACHE_ASSETS = [
   'assets/images/covers/newsletter-issue-001.png',
   'assets/resources/socratic-studio-educator-toolbox.html',
   'assets/images/covers/toolbox-1.png',
+  'issue-2/cover.png',
   'Duval et le prompting/assets/img/Untitled design (10).png',
   'Duval et le prompting/assets/img/Untitled design (11).png',
   'Duval et le prompting/assets/img/Untitled design (12).png',
@@ -115,3 +116,4 @@ self.addEventListener('fetch', (event) => {
 
   event.respondWith(cacheFirst(event.request));
 });
+
