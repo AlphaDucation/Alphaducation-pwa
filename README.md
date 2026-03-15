@@ -118,3 +118,4 @@ Then open the shown local URL.
 - If a card is missing, check JSON commas and quote marks.
 - The filter/search UI is automatic and reads values from your data.
 - The app caches core pages for offline use through `service-worker.js`.
+

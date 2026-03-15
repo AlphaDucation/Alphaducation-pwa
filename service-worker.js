@@ -1,4 +1,4 @@
-const CACHE_NAME = 'alphaducation-library-v20';
+const CACHE_NAME = 'alphaducation-library-v22';
 const OFFLINE_URL = 'offline.html';
 
 const PRECACHE_ASSETS = [
@@ -115,4 +115,3 @@ self.addEventListener('fetch', (event) => {
 
   event.respondWith(cacheFirst(event.request));
 });
-
