@@ -1,0 +1,416 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Issue 02 of the Alphaducation newsletter explores number sense through research, classroom moves, glossary notes, and an interactive concept web.">
+  <meta property="og:title" content="Alphaducation Newsletter | Issue 02 | Number Sense">
+  <meta property="og:description" content="Explore number sense through research highlights, field notes, toolbox guidance, and an interactive concept web.">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="https://alphaducation.github.io/Alphaducation-pwa/assets/images/social-preview.png">
+  <meta property="og:url" content="https://alphaducation.github.io/Alphaducation-pwa/issue-2/newsletter-issue-2.html">
+  <meta name="theme-color" content="#008a97">
+  <title>Alphaducation Newsletter | Issue 02 | Number Sense</title>
+  <link rel="icon" href="../assets/icons/favicon.png" sizes="any">
+  <link rel="apple-touch-icon" href="../assets/icons/icon-192.png">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300;1,9..144,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="newsletter-issue-2.css">
+</head>
+<body>
+  <div id="progress-bar" aria-hidden="true"></div>
+
+  <header class="site-header newsletter-site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html" aria-label="Alphaducation Library home">
+        <img class="site-brand-logo" src="../alpha-logo.png" alt="Alphaducation Library logo" width="34" height="34">
+        <span>Alphaducation Library</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="../index.html">Home</a>
+        <a href="../newspapers.html" aria-current="page">Newspapers</a>
+        <a href="../webbooks.html">Web-books</a>
+        <a href="../toolbox.html">Toolbox</a>
+        <a href="../workshops.html">Workshops</a>
+        <a href="../downloads.html">Downloads</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <header class="masthead">
+    <div class="wide-shell masthead-shell">
+      <div class="masthead-brand">
+        <div class="logo-panel">
+          <img class="newsletter-brand-logo" src="assets/logo.png" alt="Alphaducation logo" width="320" height="320">
+        </div>
+        <div class="masthead-copy">
+          <div class="alpha-mark" aria-hidden="true">&#945;</div>
+          <div class="wordmark">ALPHADUCATION</div>
+          <div class="sub-wordmark">Alpha-Library Newsletter</div>
+          <div class="series-name" id="series-name">{{SERIES_NAME}}</div>
+          <div class="issue-tagline" id="issue-tagline">{{TAGLINE}}</div>
+        </div>
+      </div>
+      <div class="masthead-rule" aria-hidden="true"></div>
+    </div>
+  </header>
+
+  <div class="metadata-bar">
+    <div class="wide-shell metadata-shell">
+      <div class="metadata-inner">
+        <span class="meta-issue" id="meta-issue">Issue #{{ISSUE_NUMBER}}</span>
+        <span class="meta-sep" aria-hidden="true">&middot;</span>
+        <span class="meta-date" id="meta-date">{{ISSUE_DATE}}</span>
+        <span class="meta-sep" aria-hidden="true">&middot;</span>
+        <span class="meta-series" id="meta-series">{{SERIES_NAME}} &middot; Series {{SERIES_CODE}}</span>
+        <span class="meta-sep" aria-hidden="true">&middot;</span>
+        <span class="meta-read" id="meta-read">{{READING_TIME}}</span>
+        <span class="meta-sep" aria-hidden="true">&middot;</span>
+        <span class="meta-level" id="meta-level">{{COMPLEXITY_LEVEL}}</span>
+      </div>
+      <div class="topic-tags" id="topic-tags"></div>
+    </div>
+  </div>
+
+  <main class="content-column">
+    <section class="section-opening-letter" id="opening-letter-section">
+      <div class="section-label">FROM THE EDITOR</div>
+      <div class="letter-body" id="opening-letter"></div>
+      <div class="letter-sign" id="editor-signature">&mdash; {{EDITOR_NAME}}</div>
+    </section>
+
+    <section class="section-feature" id="main-feature-section">
+      <div class="section-label">MAIN FEATURE</div>
+      <h1 class="feature-title" id="feature-title">{{FEATURE_TITLE}}</h1>
+      <p class="feature-deck" id="feature-deck">{{FEATURE_DECK}}</p>
+      <div class="feature-opening" id="feature-opening"></div>
+
+      <section class="feature-lens">
+        <div class="lens-tag lens-mathematical" id="lens-one-label">Mathematical Lens</div>
+        <h3 id="lens-one-heading">{{LENS_ONE_HEADING}}</h3>
+        <div id="lens-one-copy"></div>
+      </section>
+
+      <aside class="pull-quote" id="pull-quote-block">
+        <div class="pq-line" aria-hidden="true"></div>
+        <p class="pq-text" id="pull-quote">{{FEATURE_PULLQUOTE}}</p>
+        <div class="pq-line" aria-hidden="true"></div>
+      </aside>
+
+      <section class="feature-lens">
+        <div class="lens-tag lens-pedagogical" id="lens-two-label">Pedagogical Lens</div>
+        <h3 id="lens-two-heading">{{LENS_TWO_HEADING}}</h3>
+        <div id="lens-two-copy"></div>
+      </section>
+
+      <section class="feature-lens">
+        <div class="lens-tag lens-epistemological" id="lens-three-label">Epistemological Lens</div>
+        <h3 id="lens-three-heading">{{LENS_THREE_HEADING}}</h3>
+        <div id="lens-three-copy"></div>
+      </section>
+
+      <div class="feature-synthesis" id="feature-synthesis"></div>
+    </section>
+
+    <div class="alpha-proof-box">
+      <div class="proof-label">&#10022; THE ALPHA PROOF</div>
+      <div class="proof-citation" id="proof-citation">{{ALPHA_PROOF_SOURCE}}</div>
+      <div class="proof-gloss" id="proof-gloss"></div>
+      <div class="proof-tag" id="proof-tag">Source accessibility: {{ALPHA_PROOF_COMPLEXITY}}</div>
+    </div>
+
+    <section class="section-field-notes" id="field-notes-section">
+      <div class="section-label">FIELD NOTES</div>
+      <h2 class="section-heading">Practitioner Field Notes</h2>
+      <p class="field-level" id="field-level">{{FIELD_NOTES_LEVEL}}</p>
+      <div class="field-context" id="field-context"></div>
+      <div class="strategy-list" id="strategy-list"></div>
+      <div class="limitations-box">
+        <span class="limitations-label">Limitations &amp; Cautions:</span>
+        <span id="field-limitations">{{LIMITATIONS}}</span>
+      </div>
+    </section>
+
+    <div class="alpha-question-block">
+      <div class="aq-label">THIS WEEK'S ALPHA QUESTION</div>
+      <blockquote class="aq-text" id="alpha-question">{{ALPHA_QUESTION}}</blockquote>
+      <div class="aq-note">&mdash; Sit with this. No answer required.</div>
+    </div>
+
+    <section class="section-toolbox" id="toolbox-section">
+      <div class="section-label">TOOLBOX SPOTLIGHT</div>
+      <h2 class="section-heading">Toolbox Spotlight</h2>
+      <div class="toolbox-card">
+        <div class="tool-type-tag" id="tool-type">{{TOOL_TYPE}}</div>
+        <h3 class="tool-name" id="tool-name">{{TOOL_NAME}}</h3>
+        <p class="tool-oneliner" id="tool-oneliner">{{TOOL_ONELINER}}</p>
+        <div class="tool-review" id="tool-review"></div>
+        <div class="tool-meta-grid">
+          <div class="tool-best-for">
+            <div class="tbl-label">Best used for:</div>
+            <ul id="tool-best-for-list"></ul>
+          </div>
+          <div class="tool-limitations">
+            <div class="tbl-label">Limitations:</div>
+            <ul id="tool-limitations-list"></ul>
+          </div>
+        </div>
+        <div class="tool-rating" id="tool-rating"></div>
+        <div class="tool-link">
+          <span class="tbl-label">Where to find it:</span>
+          <a id="tool-url" class="tool-url" href="#">Number Talks by Sherry Parrish</a>
+        </div>
+        <div class="interactive-feature">
+          <div class="section-label">INTERACTIVE MATERIAL</div>
+          <h3 class="interactive-title">Explore the concept web</h3>
+          <p class="interactive-copy">Use the interactive relationship web to trace how number sense connects to magnitude, Number Talks, conceptual fields, and historical representation.</p>
+          <div class="interactive-actions">
+            <a class="interactive-launch" href="interactive1.html" target="_blank" rel="noopener">Open the interactive in a new tab</a>
+          </div>
+          <div class="interactive-frame">
+            <iframe src="interactive1.html" title="Number sense concept relationship web" loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-quick-reads" id="quick-reads-section">
+      <div class="section-label">QUICK READS</div>
+      <h2 class="section-heading">Quick Reads</h2>
+      <div id="quick-reads-list"></div>
+    </section>
+
+    <section class="section-glossary" id="glossary-section">
+      <div class="section-label">GLOSSARY CORNER</div>
+      <div class="glossary-archive-note">&#128218; This term is part of the growing Alphaducation Glossary.</div>
+      <div class="glossary-card">
+        <div class="glos-term" id="glossary-term">{{GLOSSARY_TERM}}</div>
+        <div class="glos-pronunciation" id="glossary-pronunciation">{{GLOSSARY_PRONUNCIATION}}</div>
+        <div class="glos-field" id="glossary-field">{{GLOSSARY_FIELD}}</div>
+        <div class="glos-section-label">Definition</div>
+        <div id="glossary-definition"></div>
+        <div class="glos-section-label">Etymology</div>
+        <div id="glossary-etymology"></div>
+        <div class="glos-section-label">In the Classroom</div>
+        <div id="glossary-classroom"></div>
+        <div class="glos-section-label">Often Confused With</div>
+        <div id="glossary-confused"></div>
+        <div class="glos-section-label">Key Reference</div>
+        <div id="glossary-reference"></div>
+      </div>
+    </section>
+
+    <section class="section-references" id="references-section">
+      <div class="section-label">REFERENCES</div>
+      <h2 class="section-heading">References &amp; Citations</h2>
+      <p class="ref-note">All sources cited in this issue. APA 7th edition. Non-peer-reviewed sources are labelled.</p>
+      <ol class="references-list" id="references-list"></ol>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wide-shell footer-shell">
+      <div class="footer-brand">
+        <img class="footer-logo" src="assets/logo.png" alt="Alphaducation logo" width="120" height="120">
+        <div class="footer-brand-copy">
+          <div class="footer-alpha-mark" aria-hidden="true">&#945;</div>
+          <div class="footer-title">ALPHADUCATION</div>
+          <div class="footer-tagline"><em>Where mathematics meets pedagogical humanity.</em></div>
+        </div>
+      </div>
+      <nav class="footer-nav" aria-label="Alphaducation navigation">
+        <a href="../newspapers.html">Archive</a>
+        <span aria-hidden="true">&middot;</span>
+        <a href="../toolbox.html">Toolbox</a>
+        <span aria-hidden="true">&middot;</span>
+        <a href="../workshops.html">Workshops</a>
+        <span aria-hidden="true">&middot;</span>
+        <a href="../webbooks.html">Web-Books</a>
+        <span aria-hidden="true">&middot;</span>
+        <a href="../contact.html">Community</a>
+      </nav>
+      <div class="footer-contact" id="footer-contact">{{SOCIAL_CONTACT_LINE}}</div>
+      <div class="footer-note" id="footer-note">{{FOOTER_NOTE}}</div>
+      <div class="footer-legal" id="footer-legal">&copy; {{CURRENT_YEAR}} Alphaducation &middot; Alpha-Library</div>
+      <div class="footer-unsub">You are receiving this because you care about teaching. <a href="../contact.html">To unsubscribe, click here.</a></div>
+    </div>
+  </footer>
+
+  <script id="newsletter-data" type="application/json">
+    {
+      "issueNumber": "2",
+      "issueDate": "15 March 2026",
+      "series": "WP",
+      "seriesName": "The Weekly Proof",
+      "complexity": "Discover",
+      "tagline": "Before fluency, there is a feel for number.",
+      "topicTags": ["Number Sense", "Primary Mathematics", "Conceptual Understanding"],
+      "editorName": "The Alphaducation Team",
+      "openingLetter": [
+        "A child who says 41 is larger than 39 because it comes just after 40 is already doing more than recall. That child is seeing structure.",
+        "This issue asks what it means for students to know numbers as relationships, benchmarks, distances, and possibilities instead of only as symbols on a page.",
+        "Number sense is not a warm-up before mathematics. It is the living logic inside mathematics."
+      ],
+      "feature": {
+        "title": "The Child Who Knows That 39 Is Almost 40",
+        "deck": "Number sense begins when numbers stop being labels and start becoming relationships.",
+        "opening": [
+          "Number sense is the flexible feel for quantity that lets a learner see 39 as almost 40, 0.4 as less than one half, and 3/4 as both a quantity and a relationship."
+        ],
+        "lensOneLabel": "Mathematical Lens",
+        "lensOneHeading": "Seeing Number as Structure",
+        "lensOneParagraphs": [
+          "Classic work on number sense describes it as intuition about numbers and the relations between them, not a checklist of isolated skills.",
+          "A learner who understands 7 also knows that it is one more than 6, three less than 10, easy to split into 4 and 3, and placeable on a number line.",
+          "History points the same way: once place value made sense, calculation and representation opened up because structure became visible."
+        ],
+        "pullQuote": "When students can see structure in number, teaching becomes an apprenticeship in mathematical thought.",
+        "lensTwoLabel": "Pedagogical Lens",
+        "lensTwoHeading": "Teaching for Comparison, Not Just Completion",
+        "lensTwoParagraphs": [
+          "Number sense grows when classrooms invite students to compare, estimate, compose, decompose, and justify before a formal procedure takes over.",
+          "Number Talks are powerful because they make numerical structure public: compensation, equivalence, benchmarking, and place value become discussable.",
+          "Good tasks matter. Asking only for the final answer can hide whether students actually saw the quantity relationships inside the problem."
+        ],
+        "lensThreeLabel": "Epistemological Lens",
+        "lensThreeHeading": "When a Number Becomes an Object of Thought",
+        "lensThreeParagraphs": [
+          "At a deeper level, number sense is about what kind of object a number becomes in the learner's mind: a count, a unit, a location, a ratio, and a transformable idea.",
+          "That flexibility is what lets numbers travel across representations without losing meaning.",
+          "Without number sense, procedures float free of judgment. With it, calculation becomes thought."
+        ],
+        "synthesis": [
+          "Number sense is not hidden before arithmetic. It is the connective tissue within arithmetic itself."
+        ]
+      },
+      "alphaProof": {
+        "citation": "Jordan, N. C., Glutting, J., & Ramineni, C. (2010). The importance of number sense to mathematics achievement in first and third grades. Learning and Individual Differences, 20(2), 82-88. https://doi.org/10.1016/j.lindif.2009.07.004",
+        "gloss": [
+          "Early number sense predicts later mathematics achievement even when age and broader cognitive factors are controlled. That shifts it from a nice foundation to a major instructional priority."
+        ],
+        "complexity": "Accessible"
+      },
+      "fieldNotes": {
+        "level": "Primary",
+        "context": [
+          "These moves are most useful when you want student thinking visible before formal methods dominate the lesson."
+        ],
+        "strategies": [
+          {
+            "name": "Compare before calculating",
+            "description": [
+              "Start with a comparison: which quantity is larger, closer, safer, or more reasonable before anyone computes exactly."
+            ],
+            "tryThis": "Ask: Which is closer to 100 - 97 or 104 - and how do you know without subtracting exactly?"
+          },
+          {
+            "name": "Ask for two paths",
+            "description": [
+              "Invite two mental strategies to the same answer so students see that numbers can move while value stays intact."
+            ],
+            "tryThis": "After 49 + 36, ask for a second path that keeps the same total but uses friendlier numbers."
+          },
+          {
+            "name": "Place it on a line",
+            "description": [
+              "Use benchmark numbers and ask students to locate new values relative to them. This strengthens magnitude, not just notation."
+            ],
+            "tryThis": "Mark 0, 1/2, and 1, then place 0.49, 0.50, and 0.52 with justification."
+          }
+        ],
+        "limitations": "This work can feel slow in coverage-driven classrooms, and discussion routines need careful scaffolds so visibility of talk also leads to visibility of ideas."
+      },
+      "alphaQuestion": "What does it mean to understand a number, and how would you know if a student does?",
+      "toolbox": {
+        "type": "Protocol",
+        "name": "Number Talk Protocol (Parrish)",
+        "oneLiner": "A short classroom routine in which students solve a carefully chosen problem mentally and discuss multiple strategies aloud.",
+        "review": [
+          "Parrish's Number Talks help teachers surface how students compensate, benchmark, decompose, and judge reasonableness. The routine works best when task choice, wait time, and recording of strategies are all deliberate."
+        ],
+        "bestUsedFor": [
+          "Launching units on place value, addition, subtraction, or early fractions",
+          "Surfacing student strategies before teaching a written method",
+          "Building mathematical discourse in mixed-attainment classrooms"
+        ],
+        "limitations": [
+          "Fast talkers can dominate unless participation structures are explicit.",
+          "Weak number choices turn the routine into answer performance instead of structure analysis."
+        ],
+        "ratings": {
+          "researchBacking": "4",
+          "easeOfAdoption": "4",
+          "depthOfImpact": "4"
+        },
+        "url": ""
+      },
+      "quickReads": [
+        {
+          "tag": "NEW RESEARCH",
+          "title": "Dierkx et al. (2025), Early numeracy development as a foundation of mathematics achievement",
+          "description": "A recent longitudinal study connecting early numeracy to later primary mathematics success.",
+          "sourceLabel": "Learning and Individual Differences, 121, 102706.",
+          "url": "https://doi.org/10.1016/j.lindif.2025.102706"
+        },
+        {
+          "tag": "RESEARCH UPDATE",
+          "title": "Jordan et al. (2022), Core foundations of early mathematics",
+          "description": "A concise framework update describing number, number relations, and number operations as an interconnected system.",
+          "sourceLabel": "Current Opinion in Behavioral Sciences, 46, 101181.",
+          "url": "https://doi.org/10.1016/j.cobeha.2022.101181"
+        },
+        {
+          "tag": "REVIEW",
+          "title": "Whitacre et al. (2020), Disentangling the research literature on number sense",
+          "description": "A major review clarifying that number sense names several related constructs, all tied together by flexibility.",
+          "sourceLabel": "Review of Educational Research, 90(1), 95-134.",
+          "url": "https://doi.org/10.3102/0034654319899706"
+        }
+      ],
+      "glossary": {
+        "term": "Number Sense",
+        "pronunciation": "",
+        "field": "Mathematics education / cognitive development",
+        "definition": [
+          "Number sense is a flexible understanding of numbers, operations, magnitude, and numerical relationships that supports sensible judgment in context."
+        ],
+        "etymology": [
+          "The phrase joins number with sense to suggest judgment about quantity and relation, not mere numeral recognition."
+        ],
+        "classroom": [
+          "In class, it appears when a student says 398 + 203 is easier to think of as 400 + 201, or notices that 0.49 sits just below one half."
+        ],
+        "confusedWith": [
+          "It is often confused with calculation fluency, but fluency can exist without the flexible judgment number sense requires."
+        ],
+        "reference": [
+          "Whitacre, I., Henning, B., & Atabas, S. (2020). Disentangling the research literature on number sense: Three constructs, one name. Review of Educational Research, 90(1), 95-134. https://doi.org/10.3102/0034654319899706"
+        ]
+      },
+      "references": [
+        "Dierkx, V., van de Rijt, B., Hessen, D., van Luit, H., & van Viersen, S. (2025). Early numeracy development as a foundation of mathematics achievement in primary education. Learning and Individual Differences, 121, 102706. https://doi.org/10.1016/j.lindif.2025.102706",
+        "Howden, H. (1989). Teaching number sense. Arithmetic Teacher, 36(6), 6-11. https://doi.org/10.5951/AT.36.6.0006",
+        "Jordan, N. C., Devlin, B. L., & Botello, M. (2022). Core foundations of early mathematics: Refining the number sense framework. Current Opinion in Behavioral Sciences, 46, 101181. https://doi.org/10.1016/j.cobeha.2022.101181",
+        "Jordan, N. C., Glutting, J., & Ramineni, C. (2010). The importance of number sense to mathematics achievement in first and third grades. Learning and Individual Differences, 20(2), 82-88. https://doi.org/10.1016/j.lindif.2009.07.004",
+        "Parrish, S. (2010). Number talks: Helping children build mental math and computation strategies, grades K-5. Math Solutions.",
+        "Whitacre, I., Henning, B., & Atabas, S. (2020). Disentangling the research literature on number sense: Three constructs, one name. Review of Educational Research, 90(1), 95-134. https://doi.org/10.3102/0034654319899706"
+      ],
+      "footerNote": "A number becomes yours the moment it starts answering back.",
+      "footerContact": "Questions, reflections, and classroom stories are always welcome at Alphaducation.",
+      "footerLinks": {
+        "archive": "../newspapers.html",
+        "toolbox": "../toolbox.html",
+        "workshops": "../workshops.html",
+        "webBooks": "../webbooks.html",
+        "community": "../contact.html",
+        "unsubscribe": "../contact.html"
+      }
+    }
+  </script>
+  <script src="newsletter-issue-2.js"></script>
+</body>
+</html>

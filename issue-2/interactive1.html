@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WP-002 · Concept Relationship Web</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Playfair+Display:ital,wght@0,500;0,700;1,500;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --alpha-forest:#1e4035;
+      --alpha-paper:#f5f0e8;
+      --alpha-gold:#b8860b;
+      --alpha-accent:#c44d2e;
+      --alpha-ink:#0e0d0b;
+      --alpha-bg:#111715;
+      --alpha-panel:#181f1d;
+      --alpha-line:#2f3b37;
+      --alpha-muted:#b8b0a2;
+      --math:#4db88a;
+      --ped:#c9a227;
+      --hist:#e8913a;
+      --opp:#c44d2e;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: transparent;
+      color: var(--alpha-paper);
+      font-family: "Fraunces", serif;
+    }
+
+    .alpha-web {
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+      background:
+        radial-gradient(circle at top, rgba(77,184,138,0.08), transparent 28%),
+        linear-gradient(180deg, rgba(30,64,53,0.25), rgba(17,23,21,1));
+      border: 1px solid rgba(245,240,232,0.08);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.28);
+    }
+
+    .alpha-web__header {
+      padding: 18px 20px 10px;
+      border-bottom: 1px solid rgba(245,240,232,0.08);
+      background: linear-gradient(180deg, rgba(30,64,53,0.48), rgba(30,64,53,0.18));
+    }
+
+    .alpha-web__eyebrow {
+      font-family: "DM Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--alpha-muted);
+      margin-bottom: 8px;
+    }
+
+    .alpha-web__title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(26px, 4vw, 36px);
+      line-height: 1.08;
+      margin: 0;
+      color: var(--alpha-paper);
+    }
+
+    .alpha-web__subtitle {
+      margin-top: 10px;
+      font-size: 15px;
+      line-height: 1.65;
+      color: rgba(245,240,232,0.86);
+      max-width: 66ch;
+    }
+
+    .alpha-web__legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      margin-top: 14px;
+      font-family: "DM Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      color: var(--alpha-muted);
+    }
+
+    .legend-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .legend-dot, .legend-line {
+      display: inline-block;
+      flex: 0 0 auto;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+    }
+
+    .legend-line {
+      width: 18px;
+      height: 0;
+      border-top: 2px solid rgba(245,240,232,0.65);
+      transform: translateY(-1px);
+    }
+
+    .legend-line--dashed {
+      border-top-style: dashed;
+    }
+
+    .alpha-web__canvas {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      background:
+        radial-gradient(circle at center, rgba(77,184,138,0.06), transparent 35%),
+        linear-gradient(180deg, rgba(255,255,255,0.015), rgba(0,0,0,0));
+    }
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .tooltip {
+      position: absolute;
+      pointer-events: none;
+      max-width: 220px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(12, 13, 11, 0.96);
+      border: 1px solid rgba(245,240,232,0.10);
+      color: var(--alpha-paper);
+      font-family: "Fraunces", serif;
+      font-size: 13px;
+      line-height: 1.45;
+      box-shadow: 0 10px 28px rgba(0,0,0,0.32);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 140ms ease, transform 140ms ease;
+      z-index: 5;
+    }
+
+    .tooltip.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .node text {
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .node-circle {
+      stroke: rgba(245,240,232,0.18);
+      stroke-width: 2;
+      transition: transform 160ms ease, opacity 160ms ease, stroke 160ms ease, filter 160ms ease;
+      transform-box: fill-box;
+      transform-origin: center;
+      cursor: pointer;
+    }
+
+    .node:hover .node-circle,
+    .node.is-active .node-circle {
+      transform: scale(1.05);
+      stroke: rgba(245,240,232,0.85);
+      filter: drop-shadow(0 0 14px rgba(245,240,232,0.18));
+    }
+
+    .edge {
+      fill: none;
+      stroke-width: 2.5;
+      opacity: 0.82;
+      transition: opacity 160ms ease, stroke-width 160ms ease;
+    }
+
+    .edge.is-highlighted {
+      stroke-width: 3.8;
+      opacity: 1;
+    }
+
+    .is-dimmed {
+      opacity: 0.18 !important;
+    }
+
+    .panel {
+      padding: 18px 20px 18px;
+      background: var(--alpha-panel);
+      border-top: 1px solid rgba(245,240,232,0.08);
+    }
+
+    .panel__meta {
+      font-family: "DM Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--alpha-muted);
+      margin-bottom: 8px;
+    }
+
+    .panel__title {
+      margin: 0 0 8px;
+      font-family: "Playfair Display", serif;
+      font-size: clamp(22px, 3vw, 28px);
+      line-height: 1.1;
+      color: var(--alpha-paper);
+    }
+
+    .panel__text {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.72;
+      color: rgba(245,240,232,0.90);
+    }
+
+    .panel__pillrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(245,240,232,0.06);
+      border: 1px solid rgba(245,240,232,0.08);
+      font-family: "DM Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.04em;
+      color: var(--alpha-paper);
+    }
+
+    .pill .swatch {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+
+    .alpha-web__footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 20px 14px;
+      border-top: 1px solid rgba(245,240,232,0.08);
+      font-family: "DM Mono", monospace;
+      font-size: 9px;
+      letter-spacing: 0.04em;
+      color: var(--alpha-muted);
+      background: rgba(0,0,0,0.12);
+    }
+
+    @media (max-width: 680px) {
+      .alpha-web__canvas { height: 420px; }
+      .alpha-web__footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="alpha-web" aria-labelledby="alpha-web-title">
+    <div class="alpha-web__header">
+      <div class="alpha-web__eyebrow">Concept Relationship Web · WP-002</div>
+      <h2 class="alpha-web__title" id="alpha-web-title">Number Sense and the ideas orbiting around it</h2>
+      <div class="alpha-web__subtitle">
+        Hover a node for a quick definition. Click a node to open a fuller note on how that idea shapes the way we teach, notice, and judge number sense.
+      </div>
+      <div class="alpha-web__legend" aria-hidden="true">
+        <span class="legend-chip"><span class="legend-dot" style="background:var(--math)"></span>Mathematical</span>
+        <span class="legend-chip"><span class="legend-dot" style="background:var(--ped)"></span>Pedagogical</span>
+        <span class="legend-chip"><span class="legend-dot" style="background:var(--hist)"></span>Historical</span>
+        <span class="legend-chip"><span class="legend-dot" style="background:var(--opp)"></span>Opposing</span>
+        <span class="legend-chip"><span class="legend-line"></span>Direct relation</span>
+        <span class="legend-chip"><span class="legend-line legend-line--dashed"></span>Analogical relation</span>
+      </div>
+    </div>
+
+    <div class="alpha-web__canvas" id="web-wrap">
+      <svg id="web-svg" viewBox="0 0 860 400" role="img" aria-label="Interactive concept web for number sense"></svg>
+      <div class="tooltip" id="tooltip"></div>
+    </div>
+
+    <div class="panel" id="info-panel">
+      <div class="panel__meta">Selected concept</div>
+      <h3 class="panel__title">Number Sense</h3>
+      <p class="panel__text">Number sense is a flexible feel for quantity, relationships, and operation. It shows up when a learner can judge that 198 + 203 is about 400 before calculating, choose a mental strategy, explain why it works, and notice whether an answer makes sense in context.</p>
+      <div class="panel__pillrow">
+        <span class="pill"><span class="swatch" style="background:var(--alpha-forest)"></span>Central concept</span>
+        <span class="pill"><span class="swatch" style="background:var(--ped)"></span>WP-002 · Discover</span>
+        <span class="pill"><span class="swatch" style="background:var(--math)"></span>Primary mathematics</span>
+      </div>
+    </div>
+
+    <div class="alpha-web__footer">
+      <span>Interactive glossary component for the Alphaducation newsletter</span>
+      <span>Alphaducation · Alpha-Library</span>
+    </div>
+  </section>
+
+  <script>
+    const css = getComputedStyle(document.documentElement);
+    const COLORS = {
+      forest: css.getPropertyValue('--alpha-forest').trim(),
+      paper: css.getPropertyValue('--alpha-paper').trim(),
+      math: css.getPropertyValue('--math').trim(),
+      ped: css.getPropertyValue('--ped').trim(),
+      hist: css.getPropertyValue('--hist').trim(),
+      opp: css.getPropertyValue('--opp').trim(),
+      ink: css.getPropertyValue('--alpha-ink').trim(),
+      muted: css.getPropertyValue('--alpha-muted').trim()
+    };
+
+    const graph = {
+      center: {
+        id: 'number-sense',
+        label: 'Number Sense',
+        x: 430,
+        y: 200,
+        r: 58,
+        fill: COLORS.forest
+      },
+      satellites: [
+        {
+          id: 'magnitude',
+          label: 'Magnitude Sense',
+          x: 195,
+          y: 95,
+          r: 33,
+          category: 'Mathematical',
+          color: COLORS.math,
+          relation: 'directly includes',
+          edgeType: 'direct',
+          def: 'Knowing that numbers carry size, distance, and order—not just names.',
+          detail: 'A student with magnitude sense knows that 398 is close to 400, that 0.6 is greater than 0.56, and that 7/8 sits near 1 on the number line. This is one of the mathematical cores of number sense because estimation, comparison, and strategy choice all depend on feeling the size of numbers.',
+          classroom: 'Ask which sum is closer to 500: 248 + 249 or 251 + 260. The point is not speed alone; it is whether students reason from size and benchmark.'
+        },
+        {
+          id: 'mcintosh',
+          label: 'McIntosh, Reys & Reys',
+          x: 655,
+          y: 84,
+          r: 35,
+          category: 'Pedagogical',
+          color: COLORS.ped,
+          relation: 'framed by',
+          edgeType: 'direct',
+          def: 'Their 1992 framework made number sense visible as flexible, meaningful use of number and operation.',
+          detail: 'McIntosh, Reys, and Reys helped the field move away from treating number sense as vague intuition. Their framework organized it into practical dimensions such as number meaning, equivalent forms, operation effects, and computation strategies, which gave teachers language for observing understanding in real tasks.',
+          classroom: 'When a child solves 19 + 18 as 20 + 17, that is not a trick. It is evidence that the student sees number relationships and can reshape a calculation while preserving value.'
+        },
+        {
+          id: 'number-talks',
+          label: 'Number Talks',
+          x: 710,
+          y: 236,
+          r: 31,
+          category: 'Pedagogical',
+          color: COLORS.ped,
+          relation: 'applied in',
+          edgeType: 'direct',
+          def: 'A short mental-math discussion routine that surfaces strategies, justifications, and efficient reasoning.',
+          detail: 'Sherry Parrish’s Number Talk protocol turns number sense into something audible. Students solve mentally, compare strategies, defend claims, and notice structure. The protocol is powerful because it reveals whether learners are counting every step or seeing relationships such as compensation, doubling, and place-value decomposition.',
+          classroom: 'Pose 49 + 36 and collect different strategies: 50 + 35, 40 + 30 + 9 + 6, or 49 + 30 + 6. The mathematics lives in the comparisons.'
+        },
+        {
+          id: 'vergnaud',
+          label: 'Vergnaud\'s Conceptual Fields',
+          x: 576,
+          y: 330,
+          r: 30,
+          category: 'Pedagogical',
+          color: COLORS.ped,
+          relation: 'extends',
+          edgeType: 'direct',
+          def: 'Concepts develop across families of situations, representations, and invariant relationships.',
+          detail: 'Vergnaud helps us see that number sense does not grow from isolated exercises. It grows across additive, multiplicative, measurement, and comparison situations, each carrying its own meanings and hidden invariants. This regional lens matters because it pushes us beyond “Can the child calculate?” toward “Across which situations does the child recognize the same underlying relation?”',
+          classroom: 'A learner may add correctly in a naked number problem yet struggle in a comparison story. Conceptual-fields thinking treats that as a meaningful diagnostic clue, not just inconsistency.'
+        },
+        {
+          id: 'al-khwarizmi',
+          label: 'Al-Khwarizmi',
+          x: 248,
+          y: 316,
+          r: 28,
+          category: 'Historical',
+          color: COLORS.hist,
+          relation: 'historical roots',
+          edgeType: 'analogical',
+          def: 'His arithmetic writing helped transmit the Hindu-Arabic numeral system and place-value computation.',
+          detail: 'Al-Khwarizmi did not coin “number sense,” but the history matters. Flexible work with numbers became vastly more powerful once the place-value system spread through mathematical culture. In a newsletter issue about number sense, he anchors the Arab mathematics lens and reminds us that ways of writing number shape ways of thinking with number.',
+          classroom: 'When children regroup 302 as 3 hundreds, 0 tens, and 2 ones—or rewrite it as 2 hundreds and 10 tens—they are working inside a place-value tradition that history had to build.'
+        },
+        {
+          id: 'algorithm-first',
+          label: 'Algorithm-First Teaching',
+          x: 120,
+          y: 220,
+          r: 29,
+          category: 'Opposing',
+          color: COLORS.opp,
+          relation: 'contrasts with',
+          edgeType: 'direct',
+          def: 'A narrow focus on procedure can hide the relationships students need to understand number.',
+          detail: 'Procedures matter, but when teaching starts and ends with fixed steps, students can learn to produce answers without seeing quantity, equivalence, or reasonableness. This node does not reject algorithms; it warns against mistaking procedural compliance for numerical understanding.',
+          classroom: 'A child who can stack and subtract 402 − 198 may still be unable to explain why the answer is just over 200. Number sense asks for both result and meaning.'
+        }
+      ]
+    };
+
+    const svg = document.getElementById('web-svg');
+    const tooltip = document.getElementById('tooltip');
+    const panel = document.getElementById('info-panel');
+    const wrap = document.getElementById('web-wrap');
+    const NS = 'http://www.w3.org/2000/svg';
+
+    function createEl(name, attrs = {}) {
+      const el = document.createElementNS(NS, name);
+      Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, value));
+      return el;
+    }
+
+    const layers = {
+      edges: createEl('g', { class: 'edges-layer' }),
+      nodes: createEl('g', { class: 'nodes-layer' })
+    };
+
+    const defs = createEl('defs');
+    const filter = createEl('filter', { id: 'softGlow', x: '-50%', y: '-50%', width: '200%', height: '200%' });
+    filter.appendChild(createEl('feGaussianBlur', { stdDeviation: '6', result: 'blur' }));
+    filter.appendChild(createEl('feColorMatrix', {
+      in: 'blur',
+      type: 'matrix',
+      values: '1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.24 0'
+    }));
+    defs.appendChild(filter);
+    svg.appendChild(defs);
+    svg.appendChild(layers.edges);
+    svg.appendChild(layers.nodes);
+
+    const edgeEls = new Map();
+    const nodeEls = new Map();
+
+    function linePath(a, b) {
+      return `M ${a.x} ${a.y} L ${b.x} ${b.y}`;
+    }
+
+    function drawCenter() {
+      const g = createEl('g', { class: 'node center-node', 'data-id': graph.center.id });
+      const glow = createEl('circle', {
+        cx: graph.center.x,
+        cy: graph.center.y,
+        r: graph.center.r + 8,
+        fill: graph.center.fill,
+        opacity: '0.15',
+        filter: 'url(#softGlow)'
+      });
+      const circle = createEl('circle', {
+        cx: graph.center.x,
+        cy: graph.center.y,
+        r: graph.center.r,
+        fill: graph.center.fill,
+        class: 'node-circle'
+      });
+      const text = createEl('text', {
+        x: graph.center.x,
+        y: graph.center.y - 4,
+        'text-anchor': 'middle',
+        fill: COLORS.paper,
+        'font-family': 'Playfair Display, serif',
+        'font-size': '24',
+        'font-weight': '700'
+      });
+      text.textContent = 'Number';
+      const text2 = createEl('text', {
+        x: graph.center.x,
+        y: graph.center.y + 23,
+        'text-anchor': 'middle',
+        fill: COLORS.paper,
+        'font-family': 'Playfair Display, serif',
+        'font-size': '24',
+        'font-style': 'italic'
+      });
+      text2.textContent = 'Sense';
+      g.append(glow, circle, text, text2);
+      layers.nodes.appendChild(g);
+      nodeEls.set(graph.center.id, g);
+      g.addEventListener('click', () => selectCenter());
+      g.addEventListener('mouseenter', () => focusNode(graph.center.id));
+      g.addEventListener('mouseleave', clearFocus);
+      g.addEventListener('mousemove', (e) => showTooltip(e, 'The central idea: flexible understanding of quantity, relationships, and operation.'));
+    }
+
+    function drawSatellites() {
+      graph.satellites.forEach(node => {
+        const edge = createEl('path', {
+          d: linePath(graph.center, node),
+          class: 'edge',
+          stroke: node.color,
+          'stroke-dasharray': node.edgeType === 'analogical' ? '8 8' : '0'
+        });
+        layers.edges.appendChild(edge);
+        edgeEls.set(node.id, edge);
+
+        const g = createEl('g', { class: 'node', 'data-id': node.id, tabindex: '0', role: 'button', 'aria-label': node.label });
+        const circle = createEl('circle', {
+          cx: node.x,
+          cy: node.y,
+          r: node.r,
+          fill: node.color,
+          class: 'node-circle'
+        });
+        const label = createEl('text', {
+          x: node.x,
+          y: node.y - (node.label.includes(' ') ? 6 : 0),
+          'text-anchor': 'middle',
+          fill: node.category === 'Historical' ? COLORS.ink : COLORS.ink,
+          'font-family': node.category === 'Historical' ? 'DM Mono, monospace' : 'Fraunces, serif',
+          'font-size': node.r >= 33 ? '14' : '13',
+          'font-weight': node.category === 'Historical' ? '500' : '600'
+        });
+
+        const lines = node.label.split(' ');
+        if (node.label.length > 16) {
+          const mid = Math.ceil(lines.length / 2);
+          const t1 = lines.slice(0, mid).join(' ');
+          const t2 = lines.slice(mid).join(' ');
+          label.textContent = t1;
+          const second = createEl('text', {
+            x: node.x,
+            y: node.y + 14,
+            'text-anchor': 'middle',
+            fill: COLORS.ink,
+            'font-family': node.category === 'Historical' ? 'DM Mono, monospace' : 'Fraunces, serif',
+            'font-size': '12.2',
+            'font-weight': node.category === 'Historical' ? '500' : '600'
+          });
+          second.textContent = t2;
+          g.append(circle, label, second);
+        } else {
+          label.setAttribute('y', node.y + 4);
+          label.textContent = node.label;
+          g.append(circle, label);
+        }
+
+        const onEnter = (e) => {
+          focusNode(node.id);
+          showTooltip(e, node.def);
+        };
+        const onMove = (e) => showTooltip(e, node.def);
+        const onLeave = () => {
+          clearFocus();
+          hideTooltip();
+        };
+        const onClick = () => selectNode(node.id);
+
+        g.addEventListener('mouseenter', onEnter);
+        g.addEventListener('mousemove', onMove);
+        g.addEventListener('mouseleave', onLeave);
+        g.addEventListener('click', onClick);
+        g.addEventListener('focus', () => focusNode(node.id));
+        g.addEventListener('blur', clearFocus);
+        g.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            selectNode(node.id);
+          }
+        });
+
+        layers.nodes.appendChild(g);
+        nodeEls.set(node.id, g);
+      });
+    }
+
+    function focusNode(id) {
+      nodeEls.forEach((el, key) => {
+        const isCenter = key === graph.center.id;
+        const isTarget = key === id;
+        el.classList.toggle('is-dimmed', !(isCenter || isTarget));
+        el.classList.toggle('is-active', isTarget || (id !== graph.center.id && isCenter));
+      });
+      edgeEls.forEach((edge, key) => {
+        const active = key === id;
+        edge.classList.toggle('is-highlighted', active);
+        edge.classList.toggle('is-dimmed', !active);
+      });
+      if (id === graph.center.id) {
+        edgeEls.forEach(edge => {
+          edge.classList.remove('is-dimmed');
+          edge.classList.remove('is-highlighted');
+        });
+        nodeEls.forEach(el => el.classList.remove('is-dimmed'));
+      }
+    }
+
+    function clearFocus() {
+      nodeEls.forEach(el => {
+        el.classList.remove('is-dimmed', 'is-active');
+      });
+      edgeEls.forEach(edge => {
+        edge.classList.remove('is-dimmed', 'is-highlighted');
+      });
+    }
+
+    function showTooltip(event, text) {
+      tooltip.textContent = text;
+      const rect = wrap.getBoundingClientRect();
+      const x = event.clientX - rect.left + 14;
+      const y = event.clientY - rect.top + 14;
+      tooltip.style.left = `${Math.min(x, rect.width - 230)}px`;
+      tooltip.style.top = `${Math.min(y, rect.height - 90)}px`;
+      tooltip.classList.add('is-visible');
+    }
+
+    function hideTooltip() {
+      tooltip.classList.remove('is-visible');
+    }
+
+    function panelHTML(title, meta, text, pills) {
+      return `
+        <div class="panel__meta">${meta}</div>
+        <h3 class="panel__title">${title}</h3>
+        <p class="panel__text">${text}</p>
+        <div class="panel__pillrow">${pills.join('')}</div>
+      `;
+    }
+
+    function pill(label, color) {
+      return `<span class="pill"><span class="swatch" style="background:${color}"></span>${label}</span>`;
+    }
+
+    function selectCenter() {
+      panel.innerHTML = panelHTML(
+        'Number Sense',
+        'Selected concept',
+        'Number sense is a flexible feel for quantity, relationships, and operation. It is visible when students estimate before computing, shift strategies without losing meaning, judge whether an answer is reasonable, and connect symbolic work to quantities they can imagine. In this issue, it is the foundation beneath primary mathematics and conceptual understanding.',
+        [
+          pill('Central concept', COLORS.forest),
+          pill('Primary mathematics', COLORS.math),
+          pill('Conceptual understanding', COLORS.ped)
+        ]
+      );
+      focusNode(graph.center.id);
+    }
+
+    function selectNode(id) {
+      const node = graph.satellites.find(n => n.id === id);
+      if (!node) return;
+      panel.innerHTML = panelHTML(
+        node.label,
+        `${node.category} relation · ${node.relation}`,
+        `${node.detail} <br><br><em>In the classroom:</em> ${node.classroom}`,
+        [
+          pill(node.category, node.color),
+          pill(node.relation, node.color),
+          pill(node.edgeType === 'analogical' ? 'Analogical link' : 'Direct link', node.color)
+        ]
+      );
+      focusNode(id);
+    }
+
+    drawCenter();
+    drawSatellites();
+    selectCenter();
+    hideTooltip();
+  </script>
+</body>
+</html>
+

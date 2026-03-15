@@ -1,4 +1,4 @@
-{
+﻿{
     "resources":  [
                       {
                           "id":  "newsletter-socratic-issue-001",
@@ -18,6 +18,25 @@
                           "featured":  true,
                           "url":  "assets/resources/newsletter-issue-001-socratic-questioning.html",
                           "uploadedAt":  "2026-03-08"
+                      },
+                      {
+                          "id":  "newsletter-weekly-proof-issue-002",
+                          "title":  "Newsletter Issue 02: Number Sense",
+                          "type":  "html",
+                          "format":  "HTML",
+                          "category":  "Newspapers",
+                          "cover":  "issue-2/assets/assets.png",
+                          "description":  "Issue 02 of The Weekly Proof explores number sense with research highlights, field notes, glossary support, and an interactive concept web.",
+                          "tags":  [
+                                       "newsletter",
+                                       "number sense",
+                                       "primary mathematics",
+                                       "conceptual understanding",
+                                       "issue 02"
+                                   ],
+                          "featured":  false,
+                          "url":  "issue-2/newsletter-issue-2.html",
+                          "uploadedAt":  "2026-03-15"
                       },
                       {
                           "id":  "toolbox-socratic-studio-001",
