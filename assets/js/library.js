@@ -22,7 +22,9 @@ export function actionLabelFor(resourceType) {
     html: 'Open',
     external: 'Visit',
     zip: 'Download',
-    video: 'Open'
+    video: 'Open',
+    pptx: 'Download',
+    image: 'Open'
   };
   return map[resourceType] || 'Open';
 }

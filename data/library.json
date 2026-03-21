@@ -95,6 +95,215 @@
                           "featured":  true,
                           "url":  "Duval et le prompting/book.html",
                           "uploadedAt":  "2026-03-13"
+                      },
+                      {
+                          "id":  "newsletter-weekly-proof-issue-003",
+                          "title":  "Newsletter Issue 03: Spaced Repetition",
+                          "type":  "html",
+                          "format":  "HTML",
+                          "category":  "Newspapers",
+                          "cover":  "issue-3/assets/issue3_cover.png",
+                          "description":  "Issue 03 of The Weekly Proof explores spaced repetition in mathematics through classroom design, retrieval, and long-term retention.",
+                          "tags":  [
+                                       "newsletter",
+                                       "spaced repetition",
+                                       "mathematics",
+                                       "retrieval practice",
+                                       "issue 03"
+                                   ],
+                          "featured":  true,
+                          "url":  "issue-3/newsletter/issue-3/newsletter-issue-3_spaced_repetition.html",
+                          "uploadedAt":  "2026-03-21"
+                      },
+                      {
+                          "id":  "workshop-spaced-repetition-path-map-003",
+                          "title":  "Visual Learning Path Map",
+                          "type":  "html",
+                          "format":  "Interactive HTML",
+                          "category":  "Workshops",
+                          "cover":  "issue-3/assets/cover3.png",
+                          "description":  "A standalone interactive map that traces the core ideas around spaced repetition, retrieval, transfer, and didactic design.",
+                          "tags":  [
+                                       "workshop",
+                                       "interactive",
+                                       "spaced repetition",
+                                       "learning path",
+                                       "WP-003"
+                                   ],
+                          "featured":  false,
+                          "url":  "issue-3/newsletter/issue-3/interactive-3.html",
+                          "uploadedAt":  "2026-03-21"
+                      },
+                      {
+                          "id":  "webbook-spaced-repetition-008",
+                          "title":  "Spaced Repetition in Mathematics",
+                          "type":  "html",
+                          "format":  "HTML",
+                          "category":  "Web-books",
+                          "cover":  "issue-3/assets/cover3.png",
+                          "description":  "An immersive web-book on spaced repetition in mathematics, focusing on retention, lesson design, and durable understanding.",
+                          "tags":  [
+                                       "web-book",
+                                       "spaced repetition",
+                                       "mathematics",
+                                       "retention",
+                                       "WP-008"
+                                   ],
+                          "featured":  false,
+                          "url":  "issue-3/web-books/webbook_spaced_repetition.html",
+                          "uploadedAt":  "2026-03-21"
+                      },
+                      {
+                          "id":  "coursebook-spaced-repetition-008",
+                          "title":  "Spaced Repetition Coursebook",
+                          "type":  "html",
+                          "format":  "HTML",
+                          "category":  "Web-books",
+                          "cover":  "issue-3/assets/cover3.png",
+                          "description":  "A structured coursebook with sequenced units, assessments, and planning guidance for teaching spaced repetition in mathematics.",
+                          "tags":  [
+                                       "coursebook",
+                                       "spaced repetition",
+                                       "mathematics",
+                                       "teaching",
+                                       "WP-008"
+                                   ],
+                          "featured":  false,
+                          "url":  "issue-3/web-books/coursebook_spaced_repetition.html",
+                          "uploadedAt":  "2026-03-21"
+                      },
+                      {
+                          "id":  "workbook-spaced-repetition-008",
+                          "title":  "Spaced Repetition Workbook",
+                          "type":  "html",
+                          "format":  "HTML",
+                          "category":  "Web-books",
+                          "cover":  "issue-3/assets/cover3.png",
+                          "description":  "A companion workbook with reflection prompts, activity sequences, and practice tasks around spaced repetition in mathematics.",
+                          "tags":  [
+                                       "workbook",
+                                       "spaced repetition",
+                                       "mathematics",
+                                       "practice",
+                                       "WP-008"
+                                   ],
+                          "featured":  false,
+                          "url":  "issue-3/web-books/workbook_spaced_repetition.html",
+                          "uploadedAt":  "2026-03-21"
+                      },
+                      {
+                          "id":  "toolbox-general-spaced-repetition-008",
+                          "title":  "Spaced Repetition in Mathematics Toolbox",
+                          "type":  "html",
+                          "format":  "HTML",
+                          "category":  "Toolbox",
+                          "cover":  "issue-3/assets/cover3.png",
+                          "description":  "A practical toolbox for planning spaced repetition routines, classroom moves, and implementation choices in mathematics.",
+                          "tags":  [
+                                       "toolbox",
+                                       "spaced repetition",
+                                       "mathematics",
+                                       "planning",
+                                       "WP-008"
+                                   ],
+                          "featured":  false,
+                          "url":  "issue-3/toolbox/general_toolbox_spaced_repetition.html",
+                          "uploadedAt":  "2026-03-21"
+                      },
+                      {
+                          "id":  "toolbox-research-spaced-repetition-008",
+                          "title":  "Spaced Repetition Research Toolbox",
+                          "type":  "html",
+                          "format":  "HTML",
+                          "category":  "Toolbox",
+                          "cover":  "issue-3/assets/cover3.png",
+                          "description":  "A research-facing toolbox that organizes evidence, conceptual distinctions, and reference points for spaced repetition in mathematics.",
+                          "tags":  [
+                                       "toolbox",
+                                       "research",
+                                       "spaced repetition",
+                                       "evidence",
+                                       "WP-008"
+                                   ],
+                          "featured":  false,
+                          "url":  "issue-3/toolbox/research_toolbox_spaced_repetition.html",
+                          "uploadedAt":  "2026-03-21"
+                      },
+                      {
+                          "id":  "toolbox-student-spaced-repetition-008",
+                          "title":  "Spaced Repetition Student Toolbox",
+                          "type":  "html",
+                          "format":  "HTML",
+                          "category":  "Toolbox",
+                          "cover":  "issue-3/assets/cover3.png",
+                          "description":  "A student-facing toolbox that turns spaced repetition into concrete routines, trackers, and study supports for mathematics learning.",
+                          "tags":  [
+                                       "toolbox",
+                                       "student",
+                                       "spaced repetition",
+                                       "study skills",
+                                       "WP-008"
+                                   ],
+                          "featured":  false,
+                          "url":  "issue-3/toolbox/student_toolbox_spaced_repetition.html",
+                          "uploadedAt":  "2026-03-21"
+                      },
+                      {
+                          "id":  "download-architecture-of-memory-001",
+                          "title":  "The Architecture of Memory",
+                          "type":  "pptx",
+                          "format":  "PowerPoint (.pptx)",
+                          "category":  "Downloads",
+                          "cover":  "issue-3/assets/cover3.png",
+                          "description":  "A presentation deck on memory architecture, retention, and how spaced repetition supports long-term mathematical learning.",
+                          "tags":  [
+                                       "download",
+                                       "powerpoint",
+                                       "memory",
+                                       "spaced repetition",
+                                       "presentation"
+                                   ],
+                          "featured":  false,
+                          "url":  "issue-3/downloadable/The_Architecture_of_Memory.pptx",
+                          "uploadedAt":  "2026-03-21"
+                      },
+                      {
+                          "id":  "download-spaced-repetition-fonctions-001",
+                          "title":  "Spaced Repetition Fonctions",
+                          "type":  "pdf",
+                          "format":  "PDF",
+                          "category":  "Downloads",
+                          "cover":  "issue-3/assets/issue3_cover.png",
+                          "description":  "A downloadable PDF resource on spaced repetition for functions, designed for classroom use and offline study.",
+                          "tags":  [
+                                       "download",
+                                       "pdf",
+                                       "functions",
+                                       "spaced repetition",
+                                       "mathematics"
+                                   ],
+                          "featured":  false,
+                          "url":  "issue-3/downloadable/spaced_repetition_fonctions.pdf",
+                          "uploadedAt":  "2026-03-21"
+                      },
+                      {
+                          "id":  "download-infographic-spaced-repetition-001",
+                          "title":  "Spaced Repetition Infographic",
+                          "type":  "image",
+                          "format":  "Image (PNG)",
+                          "category":  "Downloads",
+                          "cover":  "issue-3/downloadable/infographic_spaced_repetition.png",
+                          "description":  "A visual infographic summarizing key ideas, patterns, and classroom cues for spaced repetition in mathematics.",
+                          "tags":  [
+                                       "download",
+                                       "infographic",
+                                       "png",
+                                       "spaced repetition",
+                                       "visual"
+                                   ],
+                          "featured":  false,
+                          "url":  "issue-3/downloadable/infographic_spaced_repetition.png",
+                          "uploadedAt":  "2026-03-21"
                       }
                   ]
 }

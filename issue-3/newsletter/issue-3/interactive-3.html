@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visual Learning Path Map — WP-003</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --alpha-forest: #1e4035;
+      --alpha-paper: #f5f0e8;
+      --alpha-gold: #b8860b;
+      --alpha-accent: #c44d2e;
+      --alpha-ink: #0e0d0b;
+      --alpha-bg: #0b0f0e;
+      --alpha-muted: rgba(245, 240, 232, 0.62);
+      --alpha-dim: rgba(245, 240, 232, 0.28);
+      --alpha-future: rgba(184, 134, 11, 0.22);
+      --alpha-core: #2c6452;
+      --alpha-foundation: #173127;
+      --alpha-card: rgba(30, 64, 53, 0.18);
+      --alpha-border: rgba(245, 240, 232, 0.1);
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.28);
+      --radius: 24px;
+      --step-size: 86px;
+      --max-width: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      background: var(--alpha-bg);
+      color: var(--alpha-paper);
+    }
+
+    body {
+      font-family: "Fraunces", serif;
+      padding: 28px 18px 18px;
+    }
+
+    .alp-map {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      background:
+        radial-gradient(circle at 50% 22%, rgba(184, 134, 11, 0.08), transparent 24%),
+        linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+      border: 1px solid var(--alpha-border);
+      border-radius: calc(var(--radius) + 6px);
+      padding: 30px 26px 18px;
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .alp-map::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(196, 77, 46, 0.08), transparent 20%),
+        radial-gradient(circle at 85% 15%, rgba(184, 134, 11, 0.08), transparent 18%);
+      pointer-events: none;
+    }
+
+    .alp-kicker {
+      font-family: "DM Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--alpha-muted);
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .alp-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(1.7rem, 2.7vw, 2.45rem);
+      line-height: 1.15;
+      margin: 0 0 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .alp-subtitle {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--alpha-muted);
+      max-width: 72ch;
+      margin: 0 0 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .alp-track {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 18px;
+      align-items: start;
+      padding: 18px 0 14px;
+      min-height: 290px;
+    }
+
+    .alp-path-line {
+      position: absolute;
+      left: calc(10% + 6px);
+      right: calc(10% + 6px);
+      top: calc(18px + var(--step-size) / 2);
+      height: 2px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .alp-path-line::before,
+    .alp-path-line::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      height: 2px;
+    }
+
+    .alp-path-line::before {
+      left: 0;
+      width: 51%;
+      background: linear-gradient(90deg, rgba(44, 100, 82, 0.85), rgba(184, 134, 11, 0.95));
+      box-shadow: 0 0 18px rgba(184, 134, 11, 0.25);
+    }
+
+    .alp-path-line::after {
+      right: 0;
+      width: 49%;
+      border-top: 2px dashed rgba(245, 240, 232, 0.28);
+    }
+
+    .alp-stop {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      text-align: center;
+      min-height: 250px;
+      padding: 0 6px;
+    }
+
+    .alp-badge {
+      width: var(--step-size);
+      height: var(--step-size);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(245, 240, 232, 0.14);
+      backdrop-filter: blur(8px);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+      position: relative;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      cursor: default;
+    }
+
+    .alp-stop:hover .alp-badge {
+      transform: translateY(-3px) scale(1.02);
+      border-color: rgba(245, 240, 232, 0.28);
+    }
+
+    .alp-foundations .alp-badge {
+      background: radial-gradient(circle at 30% 30%, rgba(44,100,82,0.26), rgba(23,49,39,0.92));
+      color: rgba(245, 240, 232, 0.9);
+    }
+
+    .alp-core .alp-badge {
+      background: radial-gradient(circle at 35% 35%, rgba(72, 153, 126, 0.28), rgba(30, 64, 53, 0.94));
+      color: rgba(245, 240, 232, 0.95);
+    }
+
+    .alp-current .alp-badge {
+      background: radial-gradient(circle at 35% 35%, rgba(255, 220, 120, 0.28), rgba(184, 134, 11, 0.94));
+      color: var(--alpha-ink);
+      border-color: rgba(245, 225, 145, 0.5);
+      animation: pulseGlow 2.25s ease-in-out infinite;
+      box-shadow:
+        0 0 0 0 rgba(184, 134, 11, 0.35),
+        0 0 28px rgba(184, 134, 11, 0.34),
+        inset 0 0 20px rgba(255,255,255,0.12);
+    }
+
+    .alp-advanced .alp-badge,
+    .alp-expert .alp-badge {
+      background: radial-gradient(circle at 30% 30%, rgba(184, 134, 11, 0.08), rgba(255,255,255,0.03));
+      color: rgba(245, 240, 232, 0.62);
+      border-style: dashed;
+      border-color: rgba(245, 240, 232, 0.12);
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow:
+          0 0 0 0 rgba(184, 134, 11, 0.32),
+          0 0 22px rgba(184, 134, 11, 0.32),
+          inset 0 0 20px rgba(255,255,255,0.1);
+      }
+      50% {
+        box-shadow:
+          0 0 0 12px rgba(184, 134, 11, 0),
+          0 0 38px rgba(184, 134, 11, 0.5),
+          inset 0 0 24px rgba(255,255,255,0.16);
+      }
+    }
+
+    .alp-symbol {
+      font-family: "DM Mono", monospace;
+      font-size: 1.45rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .alp-stage {
+      font-family: "DM Mono", monospace;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--alpha-muted);
+      margin-bottom: 6px;
+    }
+
+    .alp-current .alp-stage {
+      color: rgba(245, 240, 232, 0.9);
+    }
+
+    .alp-label {
+      font-size: 1rem;
+      line-height: 1.32;
+      font-weight: 600;
+      max-width: 18ch;
+    }
+
+    .alp-current .alp-label {
+      color: #fff4d6;
+    }
+
+    .alp-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      max-width: 180px;
+    }
+
+    .alp-chip {
+      font-family: "DM Mono", monospace;
+      font-size: 10px;
+      line-height: 1;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(245, 240, 232, 0.12);
+      color: var(--alpha-muted);
+      background: rgba(255,255,255,0.03);
+      white-space: nowrap;
+    }
+
+    .alp-foundations .alp-chip,
+    .alp-core .alp-chip {
+      background: rgba(30, 64, 53, 0.35);
+    }
+
+    .alp-current .alp-chip {
+      background: rgba(14, 13, 11, 0.18);
+      color: rgba(14, 13, 11, 0.86);
+      border-color: rgba(14, 13, 11, 0.12);
+      font-weight: 500;
+    }
+
+    .alp-tooltip {
+      position: absolute;
+      top: calc(var(--step-size) + 18px);
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      width: min(220px, 92vw);
+      background: rgba(12, 16, 15, 0.94);
+      color: var(--alpha-paper);
+      border: 1px solid rgba(245, 240, 232, 0.12);
+      border-radius: 16px;
+      padding: 12px 14px;
+      box-shadow: 0 16px 34px rgba(0,0,0,0.35);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+      text-align: left;
+      pointer-events: none;
+    }
+
+    .alp-tooltip::before {
+      content: "";
+      position: absolute;
+      top: -7px;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+      width: 14px;
+      height: 14px;
+      background: rgba(12, 16, 15, 0.94);
+      border-left: 1px solid rgba(245, 240, 232, 0.12);
+      border-top: 1px solid rgba(245, 240, 232, 0.12);
+    }
+
+    .alp-stop:hover .alp-tooltip,
+    .alp-stop:focus-within .alp-tooltip {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .alp-tooltip-title {
+      font-family: "DM Mono", monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #f0d79f;
+      margin-bottom: 8px;
+    }
+
+    .alp-tooltip ul {
+      margin: 0;
+      padding-left: 16px;
+    }
+
+    .alp-tooltip li {
+      margin: 0 0 6px;
+      color: rgba(245, 240, 232, 0.86);
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .alp-here-wrap {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    .alp-here {
+      width: min(440px, 100%);
+      background: linear-gradient(180deg, rgba(184, 134, 11, 0.12), rgba(255,255,255,0.03));
+      border: 1px solid rgba(184, 134, 11, 0.28);
+      border-radius: 22px;
+      padding: 18px 18px 16px;
+      text-align: center;
+      box-shadow: 0 16px 30px rgba(0,0,0,0.22);
+    }
+
+    .alp-here-kicker {
+      font-family: "DM Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #f0d79f;
+      margin-bottom: 8px;
+    }
+
+    .alp-here-title {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(1.15rem, 1.9vw, 1.45rem);
+      line-height: 1.3;
+      margin: 0 0 6px;
+      color: #fff6df;
+    }
+
+    .alp-here-meta {
+      display: inline-flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 0;
+    }
+
+    .alp-here-meta span {
+      font-family: "DM Mono", monospace;
+      font-size: 11px;
+      color: rgba(245, 240, 232, 0.76);
+      padding: 7px 10px;
+      border: 1px solid rgba(245, 240, 232, 0.12);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .alp-foot {
+      position: relative;
+      z-index: 1;
+      margin-top: 16px;
+      text-align: center;
+      font-family: "DM Mono", monospace;
+      font-size: 9px;
+      letter-spacing: 0.08em;
+      color: rgba(245, 240, 232, 0.38);
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 900px) {
+      .alp-map {
+        padding: 24px 18px 18px;
+      }
+
+      .alp-track {
+        gap: 12px;
+      }
+
+      .alp-label {
+        font-size: 0.94rem;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .alp-track {
+        grid-template-columns: 1fr;
+        gap: 22px;
+        min-height: auto;
+        padding: 8px 0 6px 0;
+      }
+
+      .alp-path-line {
+        top: 48px;
+        bottom: 18px;
+        left: 50%;
+        right: auto;
+        width: 2px;
+        height: auto;
+        transform: translateX(-50%);
+      }
+
+      .alp-path-line::before,
+      .alp-path-line::after {
+        width: 2px;
+        left: 0;
+        right: auto;
+        top: auto;
+        height: auto;
+      }
+
+      .alp-path-line::before {
+        top: 0;
+        width: 2px;
+        height: 50%;
+        background: linear-gradient(180deg, rgba(44, 100, 82, 0.85), rgba(184, 134, 11, 0.95));
+      }
+
+      .alp-path-line::after {
+        bottom: 0;
+        width: 0;
+        height: 50%;
+        border-left: 2px dashed rgba(245, 240, 232, 0.28);
+        border-top: 0;
+      }
+
+      .alp-stop {
+        min-height: auto;
+        padding: 0;
+      }
+
+      .alp-tooltip {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        margin-top: 2px;
+        width: min(100%, 440px);
+        background: rgba(255,255,255,0.03);
+        border-color: rgba(245, 240, 232, 0.08);
+        box-shadow: none;
+        pointer-events: auto;
+      }
+
+      .alp-tooltip::before {
+        display: none;
+      }
+
+      .alp-stop:hover .alp-tooltip,
+      .alp-stop:focus-within .alp-tooltip {
+        transform: none;
+      }
+
+      .alp-here-wrap {
+        margin-top: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="alp-map" aria-label="Visual Learning Path Map for WP-003">
+    <div class="alp-kicker">Visual Learning Path Map</div>
+    <h1 class="alp-title">From memory traces to durable mathematics</h1>
+    <p class="alp-subtitle">A five-stop path for readers moving from prerequisite memory ideas into <em>Spaced Repetition: The Most Underused Tool in Mathematics Education</em>, then onward to more demanding questions about transfer, design, and expertise.</p>
+
+    <div class="alp-track">
+      <div class="alp-path-line" aria-hidden="true"></div>
+
+      <article class="alp-stop alp-foundations" tabindex="0" aria-label="Foundations stop">
+        <div class="alp-badge" aria-hidden="true"><span class="alp-symbol">◌</span></div>
+        <div class="alp-stage">Foundations</div>
+        <div class="alp-label">Memory & Forgetting</div>
+        <div class="alp-meta">
+          <span class="alp-chip">encoding</span>
+          <span class="alp-chip">forgetting curve</span>
+        </div>
+        <div class="alp-tooltip" role="note">
+          <div class="alp-tooltip-title">Build before this issue</div>
+          <ul>
+            <li>How memory traces weaken when content is left untouched</li>
+            <li>Why rereading feels fluent before it becomes durable</li>
+            <li>What makes delayed recall harder but more revealing</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="alp-stop alp-core" tabindex="0" aria-label="Core stop">
+        <div class="alp-badge" aria-hidden="true"><span class="alp-symbol">◇</span></div>
+        <div class="alp-stage">Core</div>
+        <div class="alp-label">Retrieval & Distributed Practice</div>
+        <div class="alp-meta">
+          <span class="alp-chip">retrieval practice</span>
+          <span class="alp-chip">spacing effect</span>
+        </div>
+        <div class="alp-tooltip" role="note">
+          <div class="alp-tooltip-title">Key prerequisites</div>
+          <ul>
+            <li>The difference between reviewing and recalling</li>
+            <li>Why short bursts of repetition are weaker than timed revisits</li>
+            <li>How practice schedules shape what survives after the unit</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="alp-stop alp-current" tabindex="0" aria-label="Current issue stop">
+        <div class="alp-badge" aria-hidden="true"><span class="alp-symbol">✦</span></div>
+        <div class="alp-stage">This Issue</div>
+        <div class="alp-label">Spaced Repetition: The Most Underused Tool in Mathematics Education</div>
+        <div class="alp-meta">
+          <span class="alp-chip">WP-003</span>
+          <span class="alp-chip">Discover</span>
+        </div>
+        <div class="alp-tooltip" role="note">
+          <div class="alp-tooltip-title">You are here</div>
+          <ul>
+            <li>Why mathematics learning often happens after the lesson ends</li>
+            <li>How spacing changes retention without promising magic</li>
+            <li>Where Anki, retrieval, and classroom routines actually fit</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="alp-stop alp-advanced" tabindex="0" aria-label="Advanced stop">
+        <div class="alp-badge" aria-hidden="true"><span class="alp-symbol">△</span></div>
+        <div class="alp-stage">Advanced</div>
+        <div class="alp-label">Interleaving & Desirable Difficulty</div>
+        <div class="alp-meta">
+          <span class="alp-chip">mixed problem sets</span>
+          <span class="alp-chip">productive struggle</span>
+        </div>
+        <div class="alp-tooltip" role="note">
+          <div class="alp-tooltip-title">Next questions</div>
+          <ul>
+            <li>When should practice feel harder in order to last longer?</li>
+            <li>How mixed exercises improve strategy selection in mathematics</li>
+            <li>Why immediate quiz performance can mislead teachers</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="alp-stop alp-expert" tabindex="0" aria-label="Expert stop">
+        <div class="alp-badge" aria-hidden="true"><span class="alp-symbol">⬡</span></div>
+        <div class="alp-stage">Expert</div>
+        <div class="alp-label">Transfer, Proof & Didactic Design</div>
+        <div class="alp-meta">
+          <span class="alp-chip">concept transfer</span>
+          <span class="alp-chip">didactic engineering</span>
+        </div>
+        <div class="alp-tooltip" role="note">
+          <div class="alp-tooltip-title">Beyond retention</div>
+          <ul>
+            <li>How spaced review can support, or fragment, conceptual structure</li>
+            <li>What spacing can and cannot do for proof and mathematical reasoning</li>
+            <li>How French didactics reframes timing as a design problem</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <div class="alp-here-wrap">
+      <div class="alp-here" aria-label="You are here callout">
+        <div class="alp-here-kicker">You are here</div>
+        <h2 class="alp-here-title">Spaced Repetition: The Most Underused Tool in Mathematics Education</h2>
+        <p class="alp-here-meta">
+          <span>The Weekly Proof</span>
+          <span>WP-003</span>
+          <span>Discover</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="alp-foot">Alphaducation · Alpha-Library</div>
+  </section>
+</body>
+</html>

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'alphaducation-library-v23';
+const CACHE_NAME = 'alphaducation-library-v24';
 const OFFLINE_URL = 'offline.html';
 
 const PRECACHE_ASSETS = [
@@ -34,6 +34,9 @@ const PRECACHE_ASSETS = [
   'assets/resources/socratic-studio-educator-toolbox.html',
   'assets/images/covers/toolbox-1.png',
   'issue-2/cover.png',
+  'issue-3/assets/cover3.png',
+  'issue-3/assets/issue3_cover.png',
+  'issue-3/downloadable/infographic_spaced_repetition.png',
   'Duval et le prompting/assets/img/Untitled design (10).png',
   'Duval et le prompting/assets/img/Untitled design (11).png',
   'Duval et le prompting/assets/img/Untitled design (12).png',
